@@ -1,10 +1,10 @@
 NAME		:=	megaphone
-CC			:=	cc
+CC			:=	c++
 WFLAG		:=	-Wall -Wextra -Werror -std=c++98
 
 DIR			:=	./
-BASE		:=	megaphone.cpp
-SRC			:=	$(addprefix $(DIR), $(addsuffix .c, $(BASE)))
+BASE		:=	megaphone
+SRC			:=	$(addprefix $(DIR), $(addsuffix .cpp, $(BASE)))
 OBJ			:=	$(addprefix $(DIR), $(addsuffix .o, $(BASE)))
 
 all : $(NAME)
