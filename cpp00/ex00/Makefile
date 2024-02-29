@@ -1,23 +1,11 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: seonjo <seonjo@student.42.fr>              +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2024/02/29 17:50:29 by seonjo            #+#    #+#              #
-#    Updated: 2024/02/29 17:56:59 by seonjo           ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
+NAME		:=	megaphone
 CC			:=	cc
 WFLAG		:=	-Wall -Wextra -Werror -std=c++98
 
 DIR			:=	./
 BASE		:=	megaphone.cpp
-SRC			:= $(addprefix $(DIR), $(addsuffix .c, $(BASE)))
-OBJ			:= $(addprefix $(DIR), $(addsuffix .o, $(BASE)))
-NAME		:= megaphone
+SRC			:=	$(addprefix $(DIR), $(addsuffix .c, $(BASE)))
+OBJ			:=	$(addprefix $(DIR), $(addsuffix .o, $(BASE)))
 
 all : $(NAME)
 
