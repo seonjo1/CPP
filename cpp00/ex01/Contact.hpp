@@ -15,6 +15,7 @@ private:
 	int	s_size;
 
 public:
+	Contact();
 	Contact(std::string f_name, std::string l_name, std::string n_name,
 		std::string p_num, std::string secret)
 	: first_name(f_name), last_name(l_name), nickname(n_name), 
@@ -26,5 +27,6 @@ public:
 		s_size = secret.size();
 	};
 	~Contact();
-	Contact(Contact &copy);
+	Contact(const Contact &copy);
+	Contact &operator= (const Contact &copy);
 };
