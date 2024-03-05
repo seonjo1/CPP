@@ -1,15 +1,19 @@
 #include "Contact.hpp"
+#include <iostream>
 
 class PhoneBook {
 private:
 	Contact book[8];
+	int size;
 	int	idx;
 public:
-	PhoneBook() : idx(1) {};
-	~PhoneBook();
-	PhoneBook(const PhoneBook &copy);
-	PhoneBook &operator= (const PhoneBook &copy);
+	PhoneBook();
+	// ~PhoneBook();
+	// PhoneBook(const PhoneBook &copy);
+	// PhoneBook &operator= (const PhoneBook &copy);
 	void Add();
 	void Search();
 	void Exit();
+	void contact_info(int idx, Contact &contact);
+	void print_info(const std::string &info, int len);
 };

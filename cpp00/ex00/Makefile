@@ -1,5 +1,5 @@
 NAME		:=	megaphone
-CC			:=	c++
+CPP			:=	c++
 WFLAG		:=	-Wall -Wextra -Werror -std=c++98
 
 DIR			:=	./
@@ -10,11 +10,11 @@ OBJ			:=	$(addprefix $(DIR), $(addsuffix .o, $(BASE)))
 all : $(NAME)
 
 $(NAME): $(OBJ)
-	@$(CC) $(WFLAG) $^ -o $@
+	@$(CPP) $(WFLAG) $^ -o $@
 	@echo "\033[32;1m\n🧊 [SUCCESS] $@ compiled successfully! ✨\033[m"
 
 %.o : %.c
-	@$(CC) $(WFLAG) -I. -c $< -o $@
+	@$(CPP) $(WFLAG) -I. -c $< -o $@
 	@echo "\033[34;1m🎲 [OK] $@ is compiled\033[m"
 
 clean :
