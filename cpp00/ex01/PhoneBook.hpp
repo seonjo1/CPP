@@ -9,4 +9,7 @@ public:
 	~PhoneBook();
 	PhoneBook(const PhoneBook &copy);
 	PhoneBook &operator= (const PhoneBook &copy);
+	void Add();
+	void Search();
+	void Exit();
 };
