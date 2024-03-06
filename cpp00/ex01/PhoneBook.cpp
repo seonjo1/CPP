@@ -1,25 +1,23 @@
 #include "PhoneBook.hpp"
 
 PhoneBook::PhoneBook()
- : idx(1), size(0)
- { };
+ : idx(0), size(0) {};
 
 void PhoneBook::Add()
 {
 	std::string f_name, l_name, n_name, p_num, secret;
-	std::cout << "first name : \n";
+	std::cout << "first name : ";
 	std::cin >> f_name;
-	std::cout << "last name : \n";
+	std::cout << "last name : ";
 	std::cin >> l_name;
-	std::cout << "nickname : \n";
+	std::cout << "nickname : ";
 	std::cin >> n_name;
-	std::cout << "phone number : \n";
+	std::cout << "phone number : ";
 	std::cin >> p_num;
-	std::cout << "darkest secret : \n";
+	std::cout << "darkest secret : ";
 	std::cin >> secret;
-	Contact new_contact(f_name, l_name, n_name, p_num, secret);
+	book[idx] = Contact (f_name, l_name, n_name, p_num, secret);
 	idx = (idx + 1) % 8;
-	book[idx] = new_contact;
 	if (size < 8) size++;
 }
 
@@ -27,11 +25,11 @@ void PhoneBook::print_info(const std::string &info, int len)
 {
 	int i = 0;
 	int j = 0;
-	for (; len - i < 10; i++)
+	for (; len + i < 10; i++)
 		std::cout << " ";
 	for (; i < 9; i++)
 		std::cout << info[j++];
-	if (len > 10)
+	if (len <= 10)
 		std::cout << info[j] << "|";
 	else
 		std::cout << "." << "|";
