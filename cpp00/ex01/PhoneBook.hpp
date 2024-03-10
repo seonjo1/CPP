@@ -10,9 +10,9 @@ private:
 	bool is_invalid_idx(std::string &str);
 public:
 	PhoneBook();
-	void Add();
-	void Search();
-	void Exit();
+	void ADD();
+	Contact& SEARCH();
+	void EXIT();
 	void contact_info(int idx, Contact &contact);
 	void print_info(std::string info, int len);
 };
