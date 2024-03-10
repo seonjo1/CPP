@@ -23,33 +23,26 @@ void PhoneBook::Add()
 
 void PhoneBook::print_info(std::string info, int len)
 {
-	int i = 0;
-	int j = 0;
-	for (; len + i < 10; i++)
-		std::cout << " ";
-	for (; i < 9; i++)
-		std::cout << info[j++];
-	if (len <= 10)
-		std::cout << info[j] << "|";
-	else
-		std::cout << "." << "|";
+	std::string str = info.substr(0, 10);
+	if (len > 10) str[9] = '.';
+	std::cout << std::setw(10) << std::setfill(' ') << str << "|";
 }
 
 void PhoneBook::contact_info(int idx, Contact &contact)
 {
-	std::cout << "|        " << idx << "|";
+	std::cout << "|" << std::setw(10) << std::setfill(' ') << idx << "|";
 	print_info(contact.get_first_name(), contact.get_first_name().length());
 	print_info(contact.get_last_name(), contact.get_last_name().length());
 	print_info(contact.get_nickname(), contact.get_nickname().length());
-	std::cout << std::endl;
+	std::cout << "\n";
 }
 
 void PhoneBook::Search()
 {
-	std::cout << "--------------------------------------------\n";
+	std::cout << std::setw(45) << std::setfill('-') << "\n";
 	for (int i = 0; i < size; i++)
 		contact_info(i, book[i]);
-	std::cout << "--------------------------------------------\n\n";
+	std::cout << std::setw(46) << std::setfill('-') << "\n\n";
 	// int idx;
 	// while (true)
 	// {
