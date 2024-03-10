@@ -3,7 +3,7 @@
 PhoneBook::PhoneBook()
  : idx(0), size(0) {};
 
-void PhoneBook::Add()
+void PhoneBook::ADD()
 {
 	std::string f_name, l_name, n_name, p_num, secret;
 
@@ -74,18 +74,16 @@ bool PhoneBook::is_invalid_idx(std::string &str)
 	return (0);
 }
 
-void PhoneBook::Search()
+Contact& PhoneBook::SEARCH()
 {
 	if (size == 0)
-	{
-		std::cout << "There are currently no registered contacts\n";
-		return ;
-	}
+		throw (std::string("There are currently no registered contacts\n\n"));
 	std::cout << std::setw(45) << std::setfill('-') << "\n";
 	for (int i = 0; i < size; i++)
 		contact_info(i, book[i]);
 	std::cout << std::setw(46) << std::setfill('-') << "\n\n";
 
+	int idx;
 	while (true)
 	{
 		std::string str;
@@ -100,17 +98,13 @@ void PhoneBook::Search()
 			std::cout << "Please re-enter the index\n";
 			continue ;
 		}
-		int idx = str[0] - '0';
-		std::cout << "first_name : " << book[idx].get_first_name() << std::endl;
-		std::cout << "last_name : " << book[idx].get_last_name() << std::endl;
-		std::cout << "nickname : " << book[idx].get_nickname() << std::endl;
-		std::cout << "phone_number : " << book[idx].get_phone_number() << std::endl;
-		std::cout << "darkest_secret : " << book[idx].get_darkest_secret() << std::endl;
+		idx = str[0] - '0';
 		break ;
 	}
+	return (book[idx]);
 }
 
-void PhoneBook::Exit()
+void PhoneBook::EXIT()
 {
 	std::cout << "Exit\n";
 	std::exit(1);
