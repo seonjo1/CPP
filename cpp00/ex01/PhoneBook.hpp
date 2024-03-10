@@ -7,6 +7,7 @@ private:
 	Contact book[8];
 	int size;
 	int	idx;
+	bool is_invalid_idx(std::string &str);
 public:
 	PhoneBook();
 	void Add();
