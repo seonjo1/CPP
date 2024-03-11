@@ -27,7 +27,10 @@ int main()
 			std::exit(1);
 		}
 		if (cmd.compare("ADD") == 0)
+		{
+			std::cout << std::setw(21) << std::setfill('-') << "\n";
 			book.ADD();
+		}
 		else if (cmd.compare("SEARCH") == 0)
 		{
 			try
@@ -43,7 +46,7 @@ int main()
 		else if (cmd.compare("EXIT") == 0)
 			book.EXIT();
 		else
-			std::cout << "This is not a valid command\n\n";
+			std::cout << "Put in a valid command\n\n";
 	}
 	return (0);
 }

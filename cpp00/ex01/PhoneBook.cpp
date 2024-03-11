@@ -42,6 +42,8 @@ void PhoneBook::ADD()
 		std::exit(1);
 	}
 	
+	std::cout << std::setw(22) << std::setfill('-') << "\n\n";
+
 	book[idx] = Contact (f_name, l_name, n_name, p_num, secret);
 	idx = (idx + 1) % 8;
 	if (size < 8) size++;
@@ -95,7 +97,7 @@ Contact& PhoneBook::SEARCH()
 		}
 		if (is_invalid_idx(str))
 		{
-			std::cout << "Please re-enter the index\n";
+			std::cout << "Please re-enter the index\n\n";
 			continue ;
 		}
 		idx = str[0] - '0';
@@ -106,6 +108,6 @@ Contact& PhoneBook::SEARCH()
 
 void PhoneBook::EXIT()
 {
-	std::cout << "Exit\n";
+	std::cout << "The program will exit.\n";
 	std::exit(1);
 }
