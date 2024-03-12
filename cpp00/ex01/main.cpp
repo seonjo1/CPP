@@ -29,7 +29,7 @@ int main(int argc, char **argv)
 			std::cout << "3. EXIT\n\n";
 			std::string cmd;
 			if (!std::getline(std::cin, cmd))
-				throw(std::string("Program terminated upon receiving EOF\n"));
+				throw(std::string("Program terminated upon receiving EOF\n\n"));
 			else if (book.is_invalid_input(cmd))
 				throw(std::string("Invalid input\n\n"));
 			std::cout << std::setw(46) << std::setfill('-') << "\n";
@@ -41,14 +41,18 @@ int main(int argc, char **argv)
 				print_contact(contact);
 			}
 			else if (cmd.compare("EXIT") == 0)
+			{
 				book.EXIT();
+				break ;
+			}
 			else
 				std::cerr << "Put in a valid command\n\n";
 		}
 		catch(const std::string& e)
 		{
 			std::cerr << e;
-			return (1);
+			std::cin.clear();
+			clearerr(stdin);
 		}
 	}
 	return (0);
