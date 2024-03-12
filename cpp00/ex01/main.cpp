@@ -10,43 +10,46 @@ void print_contact(Contact &contact)
 	std::cout << "\n";
 }
 
-int main()
+int main(int argc, char **argv)
 {
 	PhoneBook book;
 
+	if (argc != 1)
+	{
+		std::cerr << "too many arguments\n";
+		exit(1);
+	}
 	while (true)
 	{
-		std::cout << "Please enter command\n";
-		std::cout << "1. ADD\n";
-		std::cout << "2. SEARCH\n";
-		std::cout << "3. EXIT\n\n";
-		std::string cmd;
-		if (!std::getline(std::cin, cmd))
+		try
 		{
-			std::cout << "Program terminated upon receiving EOF\n";
-			std::exit(1);
-		}
-		if (cmd.compare("ADD") == 0)
-		{
-			std::cout << std::setw(21) << std::setfill('-') << "\n";
-			book.ADD();
-		}
-		else if (cmd.compare("SEARCH") == 0)
-		{
-			try
+			std::cout << "Please enter command\n";
+			std::cout << "1. ADD\n";
+			std::cout << "2. SEARCH\n";
+			std::cout << "3. EXIT\n\n";
+			std::string cmd;
+			if (!std::getline(std::cin, cmd))
+				throw(std::string("Program terminated upon receiving EOF\n"));
+			else if (book.is_invalid_input(cmd))
+				throw(std::string("Invalid input\n\n"));
+			std::cout << std::setw(46) << std::setfill('-') << "\n";
+			if (cmd.compare("ADD") == 0)
+				book.ADD();
+			else if (cmd.compare("SEARCH") == 0)
 			{
 				Contact& contact = book.SEARCH();
 				print_contact(contact);
 			}
-			catch(const std::string& e)
-			{
-				std::cerr << e;
-			}
+			else if (cmd.compare("EXIT") == 0)
+				book.EXIT();
+			else
+				std::cerr << "Put in a valid command\n\n";
 		}
-		else if (cmd.compare("EXIT") == 0)
-			book.EXIT();
-		else
-			std::cout << "Put in a valid command\n\n";
+		catch(const std::string& e)
+		{
+			std::cerr << e;
+			return (1);
+		}
 	}
 	return (0);
 }

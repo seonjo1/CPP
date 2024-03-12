@@ -9,38 +9,33 @@ void PhoneBook::ADD()
 
 	std::cout << "first name : ";
 	if (!std::getline(std::cin, f_name))
-	{
-		std::cout << "\nProgram terminated upon receiving EOF\n";
-		std::exit(1);
-	}
+		throw(std::string("\nProgram terminated upon receiving EOF\n"));
+	else if (is_invalid_input(f_name))
+		throw(std::string("Invalid input\n\n"));
 	
 	std::cout << "last name : ";
 	if (!std::getline(std::cin, l_name))
-	{
-		std::cout << "\nProgram terminated upon receiving EOF\n";
-		std::exit(1);
-	}
+		throw(std::string("\nProgram terminated upon receiving EOF\n"));
+	else if (is_invalid_input(l_name))
+		throw(std::string("Invalid input\n\n"));
 
 	std::cout << "nickname : ";
 	if (!std::getline(std::cin, n_name))
-	{
-		std::cout << "\nProgram terminated upon receiving EOF\n";
-		std::exit(1);
-	}
+		throw(std::string("\nProgram terminated upon receiving EOF\n"));
+	else if (is_invalid_input(n_name))
+		throw(std::string("Invalid input\n\n"));
 
 	std::cout << "phone number : ";
 	if (!std::getline(std::cin, p_num))
-	{
-		std::cout << "\nProgram terminated upon receiving EOF\n";
-		std::exit(1);
-	}
+		throw(std::string("\nProgram terminated upon receiving EOF\n"));
+	else if (is_invalid_input(p_num))
+		throw(std::string("Invalid input\n\n"));
 
 	std::cout << "darkest secret : ";
 	if (!std::getline(std::cin, secret))
-	{
-		std::cout << "\nProgram terminated upon receiving EOF\n";
-		std::exit(1);
-	}
+		throw(std::string("\nProgram terminated upon receiving EOF\n"));
+	else if (is_invalid_input(secret))
+		throw(std::string("Invalid input\n\n"));
 	
 	std::cout << std::setw(22) << std::setfill('-') << "\n\n";
 
@@ -65,7 +60,7 @@ void PhoneBook::contact_info(int idx, Contact &contact)
 	std::cout << "\n";
 }
 
-bool PhoneBook::is_invalid_idx(std::string &str)
+bool PhoneBook::is_invalid_idx(std::string& str)
 {
 	if (str.length() != 1)
 		return (1);
@@ -76,14 +71,26 @@ bool PhoneBook::is_invalid_idx(std::string &str)
 	return (0);
 }
 
+bool PhoneBook::is_invalid_input(std::string& str)
+{
+	for (int i = 0; i < str.length(); i++)
+		if (!isprint(str[i])) return true;
+	return false;
+}
+
 Contact& PhoneBook::SEARCH()
 {
 	if (size == 0)
 		throw (std::string("There are currently no registered contacts\n\n"));
-	std::cout << std::setw(45) << std::setfill('-') << "\n";
+
+	std::cout << "|" << std::setw(10) << std::setfill(' ') << "index";
+	std::cout << "|" << std::setw(10) << std::setfill(' ') << "first name";
+	std::cout << "|" << std::setw(10) << std::setfill(' ') << "last name";
+	std::cout << "|" << std::setw(10) << std::setfill(' ') << "nickname";
+	std::cout << "|\n";
 	for (int i = 0; i < size; i++)
 		contact_info(i, book[i]);
-	std::cout << std::setw(46) << std::setfill('-') << "\n\n";
+	std::cout << std::setw(46) << std::setfill('-') << "\n";
 
 	int idx;
 	while (true)
@@ -91,13 +98,12 @@ Contact& PhoneBook::SEARCH()
 		std::string str;
 		std::cout << "Index : ";
 		if (!std::getline(std::cin, str))
-		{
-			std::cout << "\nProgram terminated upon receiving EOF\n";
-			std::exit(1);
-		}
+			throw(std::string("\nProgram terminated upon receiving EOF\n"));
+		else if (is_invalid_input(str))
+			throw(std::string("Invalid input\n\n"));
 		if (is_invalid_idx(str))
 		{
-			std::cout << "Please re-enter the index\n\n";
+			std::cerr << "Please re-enter the index\n\n";
 			continue ;
 		}
 		idx = str[0] - '0';
@@ -109,5 +115,5 @@ Contact& PhoneBook::SEARCH()
 void PhoneBook::EXIT()
 {
 	std::cout << "The program will exit.\n";
-	std::exit(1);
+	std::exit(0);
 }
