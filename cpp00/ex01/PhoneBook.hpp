@@ -5,12 +5,13 @@
 # include <iostream>
 # include <iomanip>
 # include <cctype>
+# include <cstdio>
 
 class PhoneBook {
 private:
 	Contact book[8];
-	int size;
 	int	idx;
+	int size;
 	void contact_info(int idx, Contact &contact);
 	void print_info(std::string info, int len);
 	bool is_invalid_idx(std::string& str);

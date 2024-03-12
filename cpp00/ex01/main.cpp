@@ -17,7 +17,8 @@ int main(int argc, char **argv)
 	if (argc != 1)
 	{
 		std::cerr << "too many arguments\n";
-		exit(1);
+		(void)argv;
+		return (1);
 	}
 	while (true)
 	{

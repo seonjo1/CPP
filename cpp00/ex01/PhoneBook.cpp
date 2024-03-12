@@ -75,7 +75,7 @@ bool PhoneBook::is_invalid_input(std::string& str)
 {
 	bool all_space = true;
 
-	for (int i = 0; i < str.length(); i++)
+	for (int i = 0; i < (int)str.length(); i++)
 	{
 		if (!isprint(str[i])) return true;
 		if (!isspace(str[i])) all_space = false;
