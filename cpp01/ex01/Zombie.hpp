@@ -1,5 +1,5 @@
-#ifndef ZOMBIE_H
-# define ZOMBIE_H
+#ifndef ZOMBIE_HPP
+# define ZOMBIE_HPP
 
 # include <iostream>
 # include <string>
@@ -7,7 +7,7 @@
 class Zombie
 {
 private:
-	std::string _name;
+	std::string name;
 
 public:
 	Zombie();

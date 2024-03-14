@@ -3,21 +3,21 @@
 Zombie::Zombie() {};
 
 Zombie::Zombie(std::string name)
-	: _name(name) {};
+	: name(name) {};
 
 Zombie::~Zombie()
 {
-	std::cout << _name << " Zombie is gone\n";
+	std::cout << name << " Zombie is gone\n";
 }
 
 void	Zombie::announce()
 {
-	std::cout << _name << ": BraiiiiiiinnnzzzZ...\n";
+	std::cout << name << ": BraiiiiiiinnnzzzZ...\n";
 }
 
 void Zombie::set_name(std:: string &name)
 {
-	_name = name;
+	this->name = name;
 }
 
 Zombie* Zombie::zombieHorde(int N, std::string name)
