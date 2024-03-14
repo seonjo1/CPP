@@ -6,19 +6,19 @@ int main()
 
 	std::cout << "DEBUG LEVEL\n";
 	harl.complain("DEBUG");
-	std::cout << "\n\n";
+	std::cout << std::endl;
 
 	std::cout << "INFO LEVEL\n";
 	harl.complain("INFO");
-	std::cout << "\n\n";
+	std::cout << std::endl;
 
 	std::cout << "WARNING LEVEL\n";
 	harl.complain("WARNING");
-	std::cout << "\n\n";
+	std::cout << std::endl;
 
 	std::cout << "ERROR LEVEL\n";
 	harl.complain("ERROR");
-	std::cout << "\n\n";
+	std::cout << std::endl;
 
 	return (0);
 }
