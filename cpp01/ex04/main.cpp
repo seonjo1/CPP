@@ -45,7 +45,18 @@ int main (int argc, char **argv)
 			}
 			fin.close();
 		}
+		else
+		{
+			std::cout << "failed to open " << filename << std::endl;
+			fout.close();
+			return (1);
+		}
 		fout.close();
+	}
+	else
+	{
+		std::cout << "failed to open " << filename_replace << std::endl;
+		return (1);
 	}
 	return (0);
 }
