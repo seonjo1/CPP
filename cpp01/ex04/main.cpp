@@ -17,10 +17,10 @@ int main (int argc, char **argv)
 	std::ifstream fin;
 	std::ofstream fout;
 
-	fout.open(filename_replace);
+	fout.open(filename_replace.c_str());
 	if (fout.is_open())
 	{
-		fin.open(filename);
+		fin.open(filename.c_str());
 		if (fin.is_open())
 		{
 			while (!fin.eof())

@@ -23,19 +23,27 @@ int main(int argc, char **argv)
 
 	Harl harl;
 
-	switch (num)
+	while (true)
 	{
-		case 0:
-			harl.complain(arr[0]);
-		case 1:
-			harl.complain(arr[1]);
-		case 2:
-			harl.complain(arr[2]);
-		case 3:
-			harl.complain(arr[3]);
-			break;
-		default:
-			std::cout << "[ Probably complaining about insignificant problems ]\n";
+		switch (num)
+		{
+			case 0:
+				harl.complain(arr[0]);
+				break;
+			case 1:
+				harl.complain(arr[1]);
+				break;
+			case 2:
+				harl.complain(arr[2]);
+				break;
+			case 3:
+				harl.complain(arr[3]);
+				break;
+			default:
+				std::cout << "[ Probably complaining about insignificant problems ]\n";
+		}
+		num++;
+		if (num > 3) break;
 	}
 	return (0);
 }
