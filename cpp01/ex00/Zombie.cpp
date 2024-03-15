@@ -15,8 +15,17 @@ void	Zombie::announce()
 
 Zombie*	Zombie::newZombie(std::string name)
 {
-	Zombie *zombie = new Zombie(name);
-	return (zombie);
+	try
+	{
+		Zombie *zombie = new Zombie(name);
+		return (zombie);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+		std::exit(EXIT_FAILURE);
+	}
+	
 }
 
 void	Zombie::randomChump(std::string name)

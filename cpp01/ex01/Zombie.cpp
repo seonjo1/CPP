@@ -22,8 +22,16 @@ void Zombie::set_name(std:: string &name)
 
 Zombie* Zombie::zombieHorde(int N, std::string name)
 {
-	Zombie *zombies = new Zombie[N];
-	for (int i = 0; i < N; i++)
-		zombies[i].set_name(name);
-	return (zombies);
+	try
+	{		
+		Zombie *zombies = new Zombie[N];
+		for (int i = 0; i < N; i++)
+			zombies[i].set_name(name);
+		return (zombies);
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+		std::exit(EXIT_FAILURE);
+	}
 }

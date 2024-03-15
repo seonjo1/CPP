@@ -3,6 +3,8 @@
 
 # include <iostream>
 # include <string>
+# include <new>
+# include <cstdlib>
 
 class Zombie
 {
