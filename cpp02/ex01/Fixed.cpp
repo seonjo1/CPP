@@ -1,11 +1,23 @@
 #include "Fixed.hpp"
 
-int frac_bit = 8;
+const int Fixed::frac_bit = 8;
 
 Fixed::Fixed()
 	: val(0) 
 {
 	std::cout << "Default constructor called\n";
+}
+
+Fixed::Fixed(const int num)
+{
+	std::cout << "Int constructor called\n";
+	this->val = (num << frac_bit);
+}
+
+Fixed::Fixed(const float num)
+{
+	std::cout << "Float constructor called\n";
+	this->val = (num * std::pow(2, frac_bit));
 }
 
 Fixed::Fixed(const Fixed& copy)
@@ -28,12 +40,21 @@ Fixed::~Fixed()
 
 int Fixed::getRawBits() const
 {
-	std::cout << "getRawBits member function called\n";
 	return (this->val);
 }
 
-void Fixed::setRawBits(int const raw)
+float Fixed::toFloat() const
 {
-	std::cout << "setRawBits member function called\n";
-	this->val = raw;
+	return ((static_cast<float>(this->val)) / 256);
+}
+
+int Fixed::toInt(void) const
+{
+	return (this->val >> 8);
+}
+
+std::ostream& operator<<(std::ostream& os, const Fixed& obj)
+{
+	os << ((float)obj.getRawBits()) / 256;
+	return (os); 
 }
