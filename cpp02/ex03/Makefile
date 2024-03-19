@@ -1,4 +1,4 @@
-NAME		:=	_ex02
+NAME		:=	_ex03
 CPP			:=	c++
 WFLAG		:=	-Wall -Wextra -Werror -std=c++98
 

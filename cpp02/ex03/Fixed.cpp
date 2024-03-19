@@ -3,40 +3,30 @@
 const int Fixed::frac_bit = 8;
 
 Fixed::Fixed()
-	: val(0) 
-{
-	std::cout << "Default constructor called\n";
-}
+	: val(0) {};
 
 Fixed::Fixed(const int num)
 {
-	std::cout << "Int constructor called\n";
 	this->val = (num << frac_bit);
 }
 
 Fixed::Fixed(const float num)
 {
-	std::cout << "Float constructor called\n";
 	this->val = static_cast<int>(roundf(num * (1 << frac_bit)));
 }
 
 Fixed::Fixed(const Fixed& copy)
 {
-	std::cout << "Copy constructor called\n";
 	this->val = copy.getRawBits();
 }
 
 Fixed& Fixed::operator=(const Fixed& copy)
 {
-	std::cout << "Copy assignment operator called\n";
 	this->val = copy.getRawBits();
 	return (*this);
 }
 
-Fixed::~Fixed()
-{
-	std::cout << "Destructor called\n";
-}
+Fixed::~Fixed() {};
 
 int Fixed::getRawBits() const
 {
