@@ -17,7 +17,7 @@ Fixed::Fixed(const int num)
 Fixed::Fixed(const float num)
 {
 	std::cout << "Float constructor called\n";
-	this->val = static_cast<int>(roundf(num * std::pow(2, frac_bit)));
+	this->val = static_cast<int>(roundf(num * (1 << frac_bit)));
 }
 
 Fixed::Fixed(const Fixed& copy)
@@ -43,14 +43,19 @@ int Fixed::getRawBits() const
 	return (this->val);
 }
 
+void Fixed::setRawBits(int const raw)
+{
+	this->val = raw;
+}
+
 float Fixed::toFloat() const
 {
-	return ((static_cast<float>(this->val)) / 256);
+	return ((static_cast<float>(this->val)) / (1 << frac_bit));
 }
 
 int Fixed::toInt(void) const
 {
-	return (this->val >> 8);
+	return (this->val >> frac_bit);
 }
 
 std::ostream& operator<<(std::ostream& os, const Fixed& obj)
