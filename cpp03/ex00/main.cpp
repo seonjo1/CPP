@@ -31,16 +31,21 @@ int main()
 	A.beRepaired(2);
 	A.takeDamage(3);
 	A.beRepaired(2);
+	A.printInfo();
 	A.takeDamage(3);
 	A.beRepaired(2);
+	A.printInfo();
 	A.takeDamage(3);
 	A.beRepaired(2);
 	A.printInfo();
 	std::cout << std::endl;
 
 	B.takeDamage(4);
+	B.printInfo();
 	B.takeDamage(4);
+	B.printInfo();
 	B.takeDamage(4);
+	B.printInfo();
 	B.takeDamage(4);
 	B.beRepaired(2);
 	B.attack(A.getName());	
