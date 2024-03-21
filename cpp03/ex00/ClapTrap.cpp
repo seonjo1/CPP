@@ -1,25 +1,21 @@
 #include "ClapTrap.hpp"
 
-const unsigned int ClapTrap::full_hp = 10;
-const unsigned int ClapTrap::full_ep = 10;
-const unsigned int ClapTrap::full_ad = 0;
-
 ClapTrap::ClapTrap()
-	: hit_points(full_hp), energy_points(full_ep), attack_damage(full_ad)
+	: hit_points(10), energy_points(10), attack_damage(0), full_hp(10)
 {
 	std::cout << "ClapTrap constructor called\n";
 }
 
 ClapTrap::ClapTrap(std::string name)
-	: name(name), hit_points(full_hp), energy_points(full_ep), 
-		attack_damage(full_ad)
+	: name(name), hit_points(10), energy_points(10), 
+		attack_damage(0), full_hp(10)
 {
 	std::cout << "ClapTrap constructor called\n";
 }
 
 ClapTrap::ClapTrap(const ClapTrap& obj)
 	: name(obj.name), hit_points(obj.hit_points), energy_points(obj.energy_points), 
-		attack_damage(obj.attack_damage)
+		attack_damage(obj.attack_damage), full_hp(obj.full_hp)
 {
 	std::cout << "ClapTrap constructor called\n";
 }
@@ -31,10 +27,14 @@ ClapTrap::~ClapTrap()
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& obj)
 {
-	name = obj.name;
-	hit_points = obj.hit_points;
-	energy_points = obj.energy_points;
-	attack_damage = obj.attack_damage;
+	if (this != &obj)
+	{
+		name = obj.name;
+		hit_points = obj.hit_points;
+		energy_points = obj.energy_points;
+		attack_damage = obj.attack_damage;
+		full_hp = obj.full_hp;
+	}
 	return (*this);
 }
 
@@ -99,12 +99,20 @@ void ClapTrap::beRepaired(unsigned int amount)
 		std::cout << "ClapTrap " << name << " lacks energy\n";
 }
 
-std::string ClapTrap::get_name() const
+std::string ClapTrap::getName() const
 {
 	return (name);
 }
 
-unsigned int ClapTrap::get_damage() const
+unsigned int ClapTrap::getDamage() const
 {
 	return (attack_damage);
+}
+
+void ClapTrap::printInfo() const
+{
+	std::cout << "name : " << name << std::endl;
+	std::cout << "hp : " << hit_points << std::endl;
+	std::cout << "ep : " << energy_points << std::endl;
+	std::cout << "ad : " << attack_damage << std::endl;
 }

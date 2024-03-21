@@ -1,17 +1,17 @@
-#include "ScavTrap.hpp"
+#include "FragTrap.hpp"
 
 int main()
 {
-	ScavTrap A(std::string("A"));
-	ScavTrap B(std::string("B"));
+	FragTrap A(std::string("A"));
+	FragTrap B(std::string("B"));
 	std::cout << std::endl;
 
 	A.attack(B.getName());
 	B.takeDamage(A.getDamage());
 	A.printInfo();
 	B.printInfo();
-	A.guardGate();
-	B.guardGate();
+	A.highFivesGuy();
+	B.highFivesGuy();
 
 	return (0);
 }

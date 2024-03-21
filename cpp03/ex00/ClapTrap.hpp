@@ -12,9 +12,7 @@ private:
 	unsigned int energy_points;
 	unsigned int attack_damage;
 
-	static const unsigned int full_hp;
-	static const unsigned int full_ep;
-	static const unsigned int full_ad;
+	unsigned int full_hp;
 
 public:
 	ClapTrap();
@@ -26,8 +24,9 @@ public:
 	void attack(const std::string& target);
 	void takeDamage(unsigned int amount);
 	void beRepaired(unsigned int amount);
-	std::string get_name() const;
-	unsigned int get_damage() const;
+	std::string getName() const;
+	unsigned int getDamage() const;
+	void printInfo() const;
 };
 
 #endif

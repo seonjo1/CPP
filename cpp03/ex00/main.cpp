@@ -9,8 +9,8 @@ int main()
 
 	for (int i = 0; i < 3; i++)
 	{
-		A.attack(B.get_name());
-		B.takeDamage(A.get_damage());
+		A.attack(B.getName());
+		B.takeDamage(A.getDamage());
 	}
 	std::cout << std::endl;
 
@@ -35,6 +35,7 @@ int main()
 	A.beRepaired(2);
 	A.takeDamage(3);
 	A.beRepaired(2);
+	A.printInfo();
 	std::cout << std::endl;
 
 	B.takeDamage(4);
@@ -42,5 +43,5 @@ int main()
 	B.takeDamage(4);
 	B.takeDamage(4);
 	B.beRepaired(2);
-	B.attack(A.get_name());	
+	B.attack(A.getName());	
 }
