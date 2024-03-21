@@ -1,5 +1,8 @@
 #include "FragTrap.hpp"
 
+const unsigned int FragTrap::F_hit_points = 100;
+const unsigned int FragTrap::F_attack_damage = 30;
+
 FragTrap::FragTrap()
 	: ClapTrap(100, 100, 30)
 {

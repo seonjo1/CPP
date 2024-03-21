@@ -5,7 +5,9 @@
 
 class FragTrap : virtual public ClapTrap
 {
-private:
+protected:
+	static const unsigned int F_hit_points;
+	static const unsigned int F_attack_damage;
 
 public:
 	FragTrap();

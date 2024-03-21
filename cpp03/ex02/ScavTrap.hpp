@@ -5,7 +5,7 @@
 
 class ScavTrap : public ClapTrap
 {
-private:
+protected:
 	bool guardGatemode;
 
 public:

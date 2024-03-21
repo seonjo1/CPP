@@ -1,5 +1,7 @@
 #include "ScavTrap.hpp"
 
+const unsigned int ScavTrap::S_energy_points = 50;
+
 ScavTrap::ScavTrap()
 	: ClapTrap(100, 50, 20), guardGatemode(false)
 {

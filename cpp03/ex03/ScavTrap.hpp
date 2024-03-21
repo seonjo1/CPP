@@ -5,8 +5,9 @@
 
 class ScavTrap : virtual public ClapTrap
 {
-private:
+protected:
 	bool guardGatemode;
+	static const unsigned int S_energy_points;
 
 public:
 	ScavTrap();

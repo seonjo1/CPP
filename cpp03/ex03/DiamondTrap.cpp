@@ -2,20 +2,20 @@
 
 DiamondTrap::DiamondTrap()
 {
-	hit_points = 100;
-	energy_points = 50;
-	attack_damage = 30;
-	full_hp = 100;
+	hit_points = FragTrap::F_hit_points;
+	energy_points = ScavTrap::S_energy_points;
+	attack_damage = FragTrap::F_attack_damage;
+	full_hp = FragTrap::F_hit_points;
 	std::cout << "DiamondTrap constructor called\n";
 }
 
 DiamondTrap::DiamondTrap(std::string name)
 	: ClapTrap(name + std::string("_clap_name")), name(name)
 {
-	hit_points = 100;
-	energy_points = 50;
-	attack_damage = 30;
-	full_hp = 100;
+	hit_points = FragTrap::F_hit_points;
+	energy_points = ScavTrap::S_energy_points;
+	attack_damage = FragTrap::F_attack_damage;
+	full_hp = FragTrap::F_hit_points;
 	std::cout << "DiamondTrap constructor called\n";
 }
 
