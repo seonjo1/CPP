@@ -23,7 +23,7 @@ ScavTrap::~ScavTrap()
 	std::cout << "ScavTrap destructor called\n";
 }
 
-ScavTrap&	ScavTrap::operator=(const ScavTrap& obj)
+ScavTrap& ScavTrap::operator=(const ScavTrap& obj)
 {
 	if (this != &obj)
 	{
