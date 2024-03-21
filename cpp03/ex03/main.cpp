@@ -4,6 +4,7 @@ int main()
 {
 	DiamondTrap A(std::string("A"));
 	DiamondTrap B(std::string("B"));
+	DiamondTrap C(A);
 	std::cout << std::endl;
 
 	A.attack(B.getName());

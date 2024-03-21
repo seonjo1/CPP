@@ -20,7 +20,7 @@ DiamondTrap::DiamondTrap(std::string name)
 }
 
 DiamondTrap::DiamondTrap(const DiamondTrap& obj)
-	: ScavTrap(obj)
+	: ClapTrap(obj), ScavTrap(obj), FragTrap(obj)
 {
 	DiamondTrap::name = obj.name;
 	std::cout << "DiamondTrap constructor called\n";
