@@ -59,34 +59,21 @@ void Character::equip(AMateria* m)
 			idx++;
 		}
 	}
-	else
-		std::cout << "fail to equip materia\n";
 }
 
 void Character::unequip(int idx)
 {
 	if (idx >= 0 && idx < this->idx)
 	{
+		floor.getMateria(slot[idx]);
 		this->idx--;
 		for (int i = idx; i < this->idx; i++)
 			slot[i] = slot[i + 1];
 	}
-	else
-		std::cout << "invalid slot index\n";
 }
 
 void Character::use(int idx, ICharacter& target)
 {
 	if (idx >= 0 && idx < this->idx)
 		slot[idx]->use(target);
-	else
-		std::cout << "invalid slot index\n";
-}
-
-AMateria* Character::getMateria(int idx)
-{
-	if (idx >= 0 && idx < this->idx)
-		return (slot[idx]);
-	else
-		return (0);
 }

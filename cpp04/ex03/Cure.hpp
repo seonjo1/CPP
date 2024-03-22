@@ -1,8 +1,9 @@
 #ifndef CURE_HPP
 # define CURE_HPP
 
-# include <new>
 # include "AMateria.hpp"
+# include <new>
+# include <cstdlib>
 
 class Cure : public AMateria
 {

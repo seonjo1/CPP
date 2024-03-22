@@ -1,8 +1,9 @@
 #ifndef ICE_HPP
 # define ICE_HPP
 
-# include <new>
 # include "AMateria.hpp"
+# include <new>
+# include <cstdlib>
 
 class Ice : public AMateria
 {

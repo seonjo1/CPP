@@ -1,17 +1,16 @@
+#include "Floor.hpp"
 
-#include "MateriaSource.hpp"
-
-MateriaSource::MateriaSource()
+Floor::Floor()
     : idx(0) {};
 
-MateriaSource::MateriaSource(const MateriaSource& copy)
+Floor::Floor(const Floor& copy)
     : idx(copy.idx)
 {
     for (int i = 0; i < copy.idx; i++)
         slot[i] = copy.slot[i]->clone();
 }
 
-MateriaSource& MateriaSource::operator=(const MateriaSource& copy)
+Floor& Floor::operator=(const Floor& copy)
 {
     if (this != &copy)
     {
@@ -24,40 +23,27 @@ MateriaSource& MateriaSource::operator=(const MateriaSource& copy)
     return (*this);
 }
 
-MateriaSource::~MateriaSource()
+Floor::~Floor()
 {
     for (int i = 0; i < idx; i++)
         delete slot[i];
 }
 
-void MateriaSource::learnMateria(AMateria* materia)
+void Floor::getMateria(AMateria* materia)
 {
     if (materia)
     {
-        AMateria* copy_materia = materia->clone();
-        delete materia;
         if (idx == 4)
         {
             delete slot[0];
             for (int i = 0; i < 3; i++)
                 slot[i] = slot[i + 1];
-            slot[3] = copy_materia;
+            slot[3] = materia;
         }
         else
         {
-            slot[idx] = copy_materia;
+            slot[idx] = materia;
             idx++;
         }
     }
-}
-
-
-AMateria* MateriaSource::createMateria(std::string const & type)
-{
-    for (int i = 0; i < idx; i++)
-    {
-        if (slot[i]->getType().compare(type) == 0)
-            return (slot[i]->clone());
-    }
-    return (0);
 }
