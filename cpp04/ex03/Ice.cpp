@@ -16,9 +16,17 @@ Ice& Ice::operator=(const Ice& copy)
 Ice::~Ice() {};
 
 AMateria* Ice::clone() const
-{
-	AMateria *ice = new Ice();
-    return (ice);
+{	
+    try
+    {
+		AMateria *ice = new Ice();
+		return (ice);
+    }
+    catch(const std::bad_alloc& e)
+    {
+        std::cerr << e.what() << '\n';
+        std::exit(EXIT_FAILURE);
+    }
 }
 
 void Ice::use(ICharacter& target)

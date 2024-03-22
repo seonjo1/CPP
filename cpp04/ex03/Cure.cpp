@@ -16,9 +16,17 @@ Cure& Cure::operator=(const Cure& copy)
 Cure::~Cure() {};
 
 AMateria* Cure::clone() const
-{
-	AMateria *cure = new Cure();
-    return (cure);
+{	
+    try
+    {
+		AMateria *cure = new Cure();
+		return (cure);
+    }
+    catch(const std::bad_alloc& e)
+    {
+        std::cerr << e.what() << '\n';
+        std::exit(EXIT_FAILURE);
+    }
 }
 
 void Cure::use(ICharacter& target)

@@ -3,6 +3,7 @@
 
 # include "Animal.hpp"
 # include "Brain.hpp"
+# include <new>
 
 class Dog : public Animal
 {

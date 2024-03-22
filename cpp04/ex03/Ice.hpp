@@ -1,6 +1,7 @@
 #ifndef ICE_HPP
 # define ICE_HPP
 
+# include <new>
 # include "AMateria.hpp"
 
 class Ice : public AMateria

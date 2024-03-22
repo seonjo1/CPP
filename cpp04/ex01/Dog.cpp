@@ -3,15 +3,31 @@
 Dog::Dog()
     : Animal(std::string("Dog"))
 {
-    brain = new Brain();
-    std::cout << "Dog constructor called\n";
+    try
+    {
+        brain = new Brain();
+        std::cout << "Dog constructor called\n";
+    }
+    catch(const std::bad_alloc& e)
+    {
+        std::cerr << e.what() << '\n';
+        std::exit(EXIT_FAILURE);
+    }
 }
 
 Dog::Dog(const Dog& copy)
     : Animal(copy)
-{
-    brain = new Brain(*(copy.brain));
-    std::cout << "Dog constructor called\n";
+{    
+    try
+    {
+        brain = new Brain(*(copy.brain));
+        std::cout << "Dog constructor called\n";
+    }
+    catch(const std::bad_alloc& e)
+    {
+        std::cerr << e.what() << '\n';
+        std::exit(EXIT_FAILURE);
+    }
 }
 
 Dog& Dog::operator=(const Dog& copy)
