@@ -11,10 +11,10 @@ public:
 	Cure();
 	Cure(const Cure& copy);
 	Cure& operator=(const Cure& copy);
-	~Cure();
+	virtual ~Cure();
 
-	AMateria* clone() const;
-	void use(ICharacter& target);
+	virtual AMateria* clone() const;
+	virtual void use(ICharacter& target);
 };
 
 #endif

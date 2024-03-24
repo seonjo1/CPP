@@ -65,7 +65,7 @@ void Character::unequip(int idx)
 {
 	if (idx >= 0 && idx < this->idx)
 	{
-		floor.getMateria(slot[idx]);
+		inven.getMateria(slot[idx]);
 		this->idx--;
 		for (int i = idx; i < this->idx; i++)
 			slot[i] = slot[i + 1];

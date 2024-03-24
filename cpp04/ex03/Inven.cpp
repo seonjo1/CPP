@@ -1,16 +1,16 @@
-#include "Floor.hpp"
+#include "Inven.hpp"
 
-Floor::Floor()
+Inven::Inven()
 	: idx(0) {};
 
-Floor::Floor(const Floor& copy)
+Inven::Inven(const Inven& copy)
 	: idx(copy.idx)
 {
 	for (int i = 0; i < copy.idx; i++)
 		slot[i] = copy.slot[i]->clone();
 }
 
-Floor& Floor::operator=(const Floor& copy)
+Inven& Inven::operator=(const Inven& copy)
 {
 	if (this != &copy)
 	{
@@ -23,13 +23,13 @@ Floor& Floor::operator=(const Floor& copy)
 	return (*this);
 }
 
-Floor::~Floor()
+Inven::~Inven()
 {
 	for (int i = 0; i < idx; i++)
 		delete slot[i];
 }
 
-void Floor::getMateria(AMateria* materia)
+void Inven::getMateria(AMateria* materia)
 {
 	if (materia)
 	{
