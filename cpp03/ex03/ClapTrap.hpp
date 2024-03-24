@@ -11,7 +11,6 @@ protected:
 	unsigned int hit_points;
 	unsigned int energy_points;
 	unsigned int attack_damage;
-
 	unsigned int full_hp;
 
 public:
