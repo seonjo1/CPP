@@ -6,7 +6,7 @@ Animal::Animal()
 }
 
 Animal::Animal(std::string type)
-    : type(type)
+	: type(type)
 {
 	std::cout << "Animal constructor called\n";
 }
@@ -31,5 +31,5 @@ Animal::~Animal()
 
 const std::string& Animal::getType() const
 {
-    return (type);
+	return (type);
 }

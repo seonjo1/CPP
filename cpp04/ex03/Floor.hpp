@@ -6,15 +6,15 @@
 class Floor
 {
 private:
-    AMateria* slot[4];
-    int idx;
+	AMateria* slot[4];
+	int idx;
 
 public:
-    Floor();
-    Floor(const Floor& copy);
-    Floor& operator=(const Floor& copy);
-    ~Floor();
-    void getMateria(AMateria* materia);
+	Floor();
+	Floor(const Floor& copy);
+	Floor& operator=(const Floor& copy);
+	~Floor();
+	void getMateria(AMateria* materia);
 };
 
 #endif

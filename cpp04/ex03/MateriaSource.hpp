@@ -6,16 +6,16 @@
 class MateriaSource : public IMateriaSource
 {
 private:
-    int idx;
-    AMateria *slot[4];
+	int idx;
+	AMateria *slot[4];
 
 public:
-    MateriaSource();
-    MateriaSource(const MateriaSource& copy);
-    MateriaSource& operator=(const MateriaSource& copy);
-    ~MateriaSource();
-    void learnMateria(AMateria* materia);
-    AMateria* createMateria(std::string const & type);
+	MateriaSource();
+	MateriaSource(const MateriaSource& copy);
+	MateriaSource& operator=(const MateriaSource& copy);
+	~MateriaSource();
+	void learnMateria(AMateria* materia);
+	AMateria* createMateria(std::string const & type);
 };
 
 #endif

@@ -9,14 +9,14 @@
 class Cat : public Animal
 {
 private:
-    Brain* brain;
+	Brain* brain;
 
 public:
-    Cat();
-    Cat(const Cat& copy);
-    Cat& operator=(const Cat& copy);
-    ~Cat();
-    void makeSound() const;
+	Cat();
+	Cat(const Cat& copy);
+	Cat& operator=(const Cat& copy);
+	~Cat();
+	void makeSound() const;
 };
 
 #endif

@@ -6,7 +6,7 @@ WrongAnimal::WrongAnimal()
 }
 
 WrongAnimal::WrongAnimal(std::string type)
-    : type(type)
+	: type(type)
 {
 	std::cout << "WrongAnimal constructor called\n";
 }
@@ -36,5 +36,5 @@ void WrongAnimal::makeSound() const
 
 const std::string& WrongAnimal::getType() const
 {
-    return (type);
+	return (type);
 }

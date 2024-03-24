@@ -17,16 +17,16 @@ Ice::~Ice() {};
 
 AMateria* Ice::clone() const
 {	
-    try
-    {
+	try
+	{
 		AMateria *ice = new Ice();
 		return (ice);
-    }
-    catch(const std::bad_alloc& e)
-    {
-        std::cerr << e.what() << '\n';
-        std::exit(EXIT_FAILURE);
-    }
+	}
+	catch(const std::bad_alloc& e)
+	{
+		std::cerr << e.what() << '\n';
+		std::exit(EXIT_FAILURE);
+	}
 }
 
 void Ice::use(ICharacter& target)
