@@ -35,7 +35,8 @@ int main()
 		src->learnMateria(new Cure());
 		src->learnMateria(new Cure());
 		src->learnMateria(new Cure());
-		ICharacter* me = new Character("me");
+		Floor floor;
+		ICharacter* me = new Character("me", &floor);
 		AMateria* tmp;
 		tmp = src->createMateria("ice");
 		me->equip(tmp);
@@ -49,9 +50,13 @@ int main()
 		me->use(2, *bob);
 		me->use(663, *bob);
 		me->unequip(0);
+		floor.cleanUpFloor();
 		me->unequip(1);
+		floor.cleanUpFloor();
 		me->unequip(2);
+		floor.cleanUpFloor();
 		me->unequip(4);
+		floor.cleanUpFloor();
 		me->use(0, *bob);
 		me->use(1, *bob);
 		

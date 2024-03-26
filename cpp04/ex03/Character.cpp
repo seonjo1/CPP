@@ -6,6 +6,9 @@ Character::Character()
 Character::Character(std::string name)
 	: name(name), idx(0) {};
 
+Character::Character(std::string name, Floor* floor)
+	: name(name), idx(0), floor(floor) {};
+
 Character::Character(const Character& copy)
 	: name(copy.name), idx(copy.idx)
 {
@@ -65,7 +68,7 @@ void Character::unequip(int idx)
 {
 	if (idx >= 0 && idx < this->idx)
 	{
-		inven.getMateria(slot[idx]);
+		floor->getMateria(slot[idx]);
 		this->idx--;
 		for (int i = idx; i < this->idx; i++)
 			slot[i] = slot[i + 1];

@@ -1,7 +1,7 @@
 #ifndef CHARACTER_HPP
 # define CHARACTER_HPP
 
-# include "Inven.hpp"
+# include "Floor.hpp"
 # include "AMateria.hpp"
 
 class Character : public ICharacter
@@ -10,11 +10,11 @@ private:
 	std::string name;
 	int idx;
 	AMateria* slot[4];
-	Inven inven;
-
+	Floor *floor;
 public:
 	Character();
 	Character(std::string name);
+	Character(std::string name, Floor* floor);
 	Character(const Character& copy);
 	Character& operator=(const Character& copy);
 	virtual ~Character();

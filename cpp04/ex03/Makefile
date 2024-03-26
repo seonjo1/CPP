@@ -3,7 +3,7 @@ CPP			:=	c++
 WFLAG		:=	-Wall -Wextra -Werror -std=c++98
 
 DIR			:=	./
-BASE		:=	main AMateria Character Cure Ice MateriaSource Inven
+BASE		:=	main AMateria Character Cure Ice MateriaSource Floor
 SRC			:=	$(addprefix $(DIR), $(addsuffix .cpp, $(BASE)))
 OBJ			:=	$(addprefix $(DIR), $(addsuffix .o, $(BASE)))
 
