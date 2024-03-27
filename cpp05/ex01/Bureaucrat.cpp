@@ -1,4 +1,5 @@
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 
 Bureaucrat::Bureaucrat()
 	: grade(150) {};
@@ -85,7 +86,20 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj)
 	return (os);
 }
 
-void Bureaucrat::signForm()
+void Bureaucrat::signForm(Form& form)
 {
-
+	try
+	{
+		if (form.getIsSigned()) std::cout << "The form is already signed\n";
+		else 
+		{
+			form.beSigned(*this);
+			std::cout << name << " signed " << form.getName() << std::endl;
+		}
+	}
+	catch(const std::exception& e)
+	{
+		std::cout << name << " couldn't sign " << form.getName() << " because " 
+			<< e.what() << std::endl;
+	}
 }
