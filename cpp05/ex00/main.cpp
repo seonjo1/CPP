@@ -15,4 +15,6 @@ int main()
 	std::cout << C << std::endl;
 	C.decrementGrade();
 	std::cout << C << std::endl;
+
+	return (0);
 }

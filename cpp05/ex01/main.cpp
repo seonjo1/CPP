@@ -13,4 +13,6 @@ int main()
 	A.signForm(F);
 	std::cout << F << std::endl;
 	std::cout << G << std::endl;
+	
+	return (0);
 }

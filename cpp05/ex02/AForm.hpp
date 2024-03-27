@@ -38,7 +38,7 @@ public:
 	AForm&	operator=(const AForm& obj);
 
 	std::string getName() const;
-	std::string getTarget() const
+	std::string getTarget() const;
 	bool getIsSigned() const;
 	int getGradeRequiredToSign() const;
 	int getGradeRequiredToExecute() const;
