@@ -6,15 +6,12 @@
 
 class ShrubberyCreationForm : public AForm
 {
-private:
-
 public:
-	ShrubberyCreationForm();
-	ShrubberyCreationForm(std::string name, std::string target);
+	ShrubberyCreationForm(std::string target);
 	ShrubberyCreationForm(const ShrubberyCreationForm& obj);
 	virtual ~ShrubberyCreationForm();
-	ShrubberyCreationForm&	operator=(const ShrubberyCreationForm& obj);
-	virtual void execute(Bureaucrat cosnt & executor) const;
+	virtual ShrubberyCreationForm&	operator=(const ShrubberyCreationForm& obj);
+	virtual void execute(Bureaucrat const & executor) const;
 };
 
 #endif

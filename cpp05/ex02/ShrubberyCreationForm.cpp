@@ -1,10 +1,7 @@
 #include "ShrubberyCreationForm.hpp"
 
-ShrubberyCreationForm::ShrubberyCreationForm()
-	: AForm {145, 137};
-
-ShrubberyCreationForm::ShrubberyCreationForm(std::string name, std::string target)
-	: AForm(name, target, 145, 137) {};
+ShrubberyCreationForm::ShrubberyCreationForm(std::string target)
+	: AForm(std::string("ShrubberyCreationForm"), target, 145, 137) {};
 
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& obj)
 	: AForm(obj) {};
@@ -21,10 +18,10 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 	return (*this);
 }
 
-void ShrubberyCreationForm::execute(Bureaucrat cosnt & executor) const
+void ShrubberyCreationForm::execute(Bureaucrat const & executor) const
 {
-	if (getIsSigned()) throw AForm::FormIsNotSignedException();
-	else if (GradeRequiredToExecute < executor.getGrade()) throw AForm::GradeTooLowException();
+	if (!getIsSigned()) throw AForm::FormIsNotSignedException();
+	else if (getGradeRequiredToExecute() < executor.getGrade()) throw AForm::GradeTooLowException();
 	std::ofstream fout;
 	fout.open((getTarget() + "_shrubbery").c_str());
 	if (fout.is_open())

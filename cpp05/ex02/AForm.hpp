@@ -12,6 +12,9 @@ private:
 	const int GradeRequiredToSign;
 	const int GradeRequiredToExecute;
 
+	AForm();
+	virtual AForm& operator=(const AForm& obj);
+
 protected:
 	class GradeTooHighException : public std::exception
 	{
@@ -39,13 +42,12 @@ protected:
 		virtual const char* what() const throw();
 	};
 
-public:
-	AForm();
-	AForm(std::string name = "", std::string target = "", 
-		int GradeRequiredToSign, int GradeRequiredToExecute);
 	AForm(const AForm& obj);
+	AForm(std::string name , std::string target , 
+		int GradeRequiredToSign, int GradeRequiredToExecute);
 	virtual ~AForm();
-	AForm&	operator=(const AForm& obj);
+
+public:
 
 	std::string getName() const;
 	std::string getTarget() const;
@@ -53,7 +55,7 @@ public:
 	int getGradeRequiredToSign() const;
 	int getGradeRequiredToExecute() const;
 	void beSigned(Bureaucrat& bureaucrat);
-	virtual void execute(Bureaucrat cosnt & executor) const = 0;
+	virtual void execute(Bureaucrat const & executor) const = 0;
 };
 
 std::ostream& operator<<(std::ostream& os, const AForm& obj);

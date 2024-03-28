@@ -7,18 +7,10 @@ AForm::AForm(std::string name, std::string target, int GradeRequiredToSign, int 
 	: name(name), target(target), isSigned(false), GradeRequiredToSign(GradeRequiredToSign), 
 		GradeRequiredToExecute(GradeRequiredToExecute)
 {
-	try
-	{
-		if (GradeRequiredToSign < 1 || GradeRequiredToExecute < 1)
-			throw AForm::GradeTooHighException();
-		else if (GradeRequiredToSign > 150 || GradeRequiredToExecute > 150)
-			throw AForm::GradeTooLowException();
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	
+	if (GradeRequiredToSign < 1 || GradeRequiredToExecute < 1)
+		throw AForm::GradeTooHighException();
+	else if (GradeRequiredToSign > 150 || GradeRequiredToExecute > 150)
+		throw AForm::GradeTooLowException();	
 }
 
 AForm::AForm(const AForm& obj)
@@ -31,10 +23,7 @@ AForm::~AForm() {};
 AForm& AForm::operator=(const AForm& obj)
 {
 	if (this != &obj)
-	{
-		AForm::~AForm();
-		new(this) AForm(obj);
-	}
+		return (*this);
 	return (*this);
 }
 
@@ -65,8 +54,8 @@ int AForm::getGradeRequiredToExecute() const
 
 void AForm::beSigned(Bureaucrat& bureaucrat)
 {
-	if (isSigned) throw Form::FormAlreadySignedException();
-	else if (bureaucrat.getGrade() > GradeRequiredToSign) throw Form::GradeTooLowException();
+	if (isSigned) throw AForm::FormAlreadySignedException();
+	else if (bureaucrat.getGrade() > GradeRequiredToSign) throw AForm::GradeTooLowException();
 	isSigned = true;
 }
 

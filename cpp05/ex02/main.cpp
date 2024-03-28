@@ -1,19 +1,21 @@
 #include "Bureaucrat.hpp"
-#include "AForm.hpp"
 #include "ShrubberyCreationForm.hpp"
 #include "RobotomyRequestForm.hpp"
 #include "PresidentialPardonForm.hpp"
 
 int main()
 {
+	try
 	{
-		Bureaucrat A("A", 150);
-		
-		ShrubberyCreationForm shrubberyForm("shrubberyForm", "seonjo");
-		RobotomyRequestForm roboForm1("roboForm1", "seonjo");
-		RobotomyRequestForm roboForm2("roboForm2", "seonjo");
-		RobotomyRequestForm roboForm3("roboForm3", "seonjo");
-		PresidentialPardonForm PardonForm("PardonForm", "seonjo");
+		std::cout << "Bureaucrat 'A' grade '1'\n\n";
+		Bureaucrat A("A", 1);
+		std::cout << A << "\n\n";
+
+		ShrubberyCreationForm shrubberyForm("seonjo1");
+		RobotomyRequestForm roboForm1("seonjo1");
+		RobotomyRequestForm roboForm2("seonjo1");
+		RobotomyRequestForm roboForm3("seonjo1");
+		PresidentialPardonForm PardonForm("seonjo1");
 
 		A.signForm(shrubberyForm);
 		A.signForm(roboForm1);
@@ -27,15 +29,22 @@ int main()
 		A.executeForm(roboForm3);
 		A.executeForm(PardonForm);
 	}
-
+	catch(const std::exception& e)
 	{
-		Bureaucrat B("B", 50);
+		std::cerr << e.what() << '\n';
+	}
 
-		ShrubberyCreationForm shrubberyForm("shrubberyForm", "seonjo");
-		RobotomyRequestForm roboForm1("roboForm1", "seonjo");
-		RobotomyRequestForm roboForm2("roboForm2", "seonjo");
-		RobotomyRequestForm roboForm3("roboForm3", "seonjo");
-		PresidentialPardonForm PardonForm("PardonForm", "seonjo");
+	try
+	{
+		std::cout << "\n\nBureaucrat 'B' grade '50'\n\n";
+		Bureaucrat B("B", 50);
+		std::cout << B << "\n\n";
+
+		ShrubberyCreationForm shrubberyForm("seonjo2");
+		RobotomyRequestForm roboForm1("seonjo2");
+		RobotomyRequestForm roboForm2("seonjo2");
+		RobotomyRequestForm roboForm3("seonjo2");
+		PresidentialPardonForm PardonForm("seonjo2");
 
 		B.signForm(shrubberyForm);
 		B.signForm(roboForm1);
@@ -49,14 +58,22 @@ int main()
 		B.executeForm(roboForm3);
 		B.executeForm(PardonForm);
 	}
+	catch(const std::exception& e)
 	{
-		Bureaucrat C("C", 50);
+		std::cerr << e.what() << '\n';
+	}
+	
+	try
+	{
+		std::cout << "\n\nBureaucrat 'C' grade '150'\n\n";
+		Bureaucrat C("C", 150);
+		std::cout << C << "\n\n";
 
-		ShrubberyCreationForm shrubberyForm("shrubberyForm", "seonjo");
-		RobotomyRequestForm roboForm1("roboForm1", "seonjo");
-		RobotomyRequestForm roboForm2("roboForm2", "seonjo");
-		RobotomyRequestForm roboForm3("roboForm3", "seonjo");
-		PresidentialPardonForm PardonForm("PardonForm", "seonjo");
+		ShrubberyCreationForm shrubberyForm("seonjo3");
+		RobotomyRequestForm roboForm1("seonjo3");
+		RobotomyRequestForm roboForm2("seonjo3");
+		RobotomyRequestForm roboForm3("seonjo3");
+		PresidentialPardonForm PardonForm("seonjo3");
 
 		C.signForm(shrubberyForm);
 		C.signForm(roboForm1);
@@ -70,5 +87,10 @@ int main()
 		C.executeForm(roboForm3);
 		C.executeForm(PardonForm);
 	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
+	
 	return (0);
 }
