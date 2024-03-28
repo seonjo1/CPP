@@ -12,7 +12,7 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
 {
 	if (this != &obj)
 	{
-		PresidentialPardonForm::~PresidentialPardonForm();
+		this->~PresidentialPardonForm();
 		new(this) PresidentialPardonForm(obj);
 	}
 	return (*this);

@@ -19,7 +19,7 @@ Bureaucrat&	Bureaucrat::operator=(const Bureaucrat& obj)
 {
 	if (this != &obj)
 	{
-		Bureaucrat::~Bureaucrat();
+		this->~Bureaucrat();
 		new(this) Bureaucrat(obj);
 	}
 	return (*this);

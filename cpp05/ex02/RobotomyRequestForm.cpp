@@ -12,7 +12,7 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& o
 {
 	if (this!= &obj)
 	{
-		RobotomyRequestForm::~RobotomyRequestForm();
+		this->~RobotomyRequestForm();
 		new(this) RobotomyRequestForm(obj);
 	}
 	return (*this);

@@ -23,7 +23,7 @@ Form& Form::operator=(const Form& obj)
 {
 	if (this != &obj)
 	{
-		Form::~Form();
+		this->~Form();
 		new(this) Form(obj);
 	}
 	return (*this);

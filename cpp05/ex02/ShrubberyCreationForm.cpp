@@ -12,7 +12,7 @@ ShrubberyCreationForm& ShrubberyCreationForm::operator=(const ShrubberyCreationF
 {
 	if (this != &obj)
 	{
-		ShrubberyCreationForm::~ShrubberyCreationForm();
+		this->~ShrubberyCreationForm();
 		new(this) ShrubberyCreationForm(obj);
 	}
 	return (*this);
