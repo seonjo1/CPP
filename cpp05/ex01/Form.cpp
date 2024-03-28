@@ -68,7 +68,7 @@ const char* Form::GradeTooHighException::what() const throw()
 
 const char* Form::FormAlreadySignedException::what() const throw()
 {
-	return ("Form is already signed");
+	return ("form is already signed");
 }
 
 std::ostream& operator<<(std::ostream& os, const Form& obj)
