@@ -45,10 +45,9 @@ protected:
 	AForm(const AForm& obj);
 	AForm(std::string name , std::string target , 
 		int GradeRequiredToSign, int GradeRequiredToExecute);
-	virtual ~AForm();
 
 public:
-
+	virtual ~AForm();
 	std::string getName() const;
 	std::string getTarget() const;
 	bool getIsSigned() const;
