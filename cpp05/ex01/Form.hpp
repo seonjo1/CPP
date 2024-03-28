@@ -21,7 +21,12 @@ private:
 	public:
 		virtual const char* what() const throw();
 	};
-
+	class FormAlreadySignedException : public std::exception
+	{
+	public:
+		virtual const char* what() const throw();
+	};
+	
 public:
 	Form();
 	Form(std::string name, int GradeRequiredToSign, int GradeRequiredToExecute);

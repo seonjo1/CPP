@@ -23,7 +23,8 @@ RobotomyRequestForm& RobotomyRequestForm::operator=(const RobotomyRequestForm& o
 
 void RobotomyRequestForm::execute(Bureaucrat cosnt & executor) const
 {
-	if (GradeRequiredToExecute < executor.getGrade()) throw AForm::GradeTooLowException();
+	if (getIsSigned()) throw AForm::FormIsNotSignedException();
+	else if (GradeRequiredToExecute < executor.getGrade()) throw AForm::GradeTooLowException();
 	std::cout << "drrrrrrrrr.......\n";
 	std::srand(time(0));
 	if (rand() & 1)	std::cout << target << "has been robotomized successfully\n";

@@ -65,8 +65,8 @@ int AForm::getGradeRequiredToExecute() const
 
 void AForm::beSigned(Bureaucrat& bureaucrat)
 {
-	if (bureaucrat.getGrade() > GradeRequiredToSign)
-		throw AForm::GradeTooLowException();
+	if (isSigned) throw Form::FormAlreadySignedException();
+	else if (bureaucrat.getGrade() > GradeRequiredToSign) throw Form::GradeTooLowException();
 	isSigned = true;
 }
 
@@ -78,6 +78,16 @@ const char* AForm::GradeTooLowException::what() const throw()
 const char* AForm::GradeTooHighException::what() const throw()
 {
 	return ("grade is too high");
+}
+
+const char* AForm::FormAlreadySignedException::what() const throw()
+{
+	return ("Form is already signed");
+}
+
+const char* AForm::FormIsNotSignedException::what() const throw()
+{
+	return ("Form is not signed");
 }
 
 const char* AForm::FileOpenException::what() const throw()

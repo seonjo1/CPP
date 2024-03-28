@@ -23,6 +23,16 @@ protected:
 	public:
 		virtual const char* what() const throw();
 	};
+	class FormAlreadySignedException : public std::exception
+	{
+	public:
+		virtual const char* what() const throw();
+	};
+	class FormIsNotSignedException : public std::exception
+	{
+	public:
+		virtual const char* what() const throw();
+	};
 	class FileOpenException : public std::exception
 	{
 	public:

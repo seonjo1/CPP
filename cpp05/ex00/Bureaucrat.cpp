@@ -4,11 +4,10 @@ Bureaucrat::Bureaucrat()
 	: grade(150) {};
 
 Bureaucrat::Bureaucrat(std::string name, int grade)
-	: name(name)
+	: name(name), grade(grade)
 {
 	if (grade < 1) throw Bureaucrat::GradeTooHighException();
 	else if (grade > 150) throw Bureaucrat::GradeTooLowException();
-	this->grade = grade;
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& obj)

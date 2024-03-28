@@ -5,18 +5,10 @@ Bureaucrat::Bureaucrat()
 	: grade(150) {};
 
 Bureaucrat::Bureaucrat(std::string name, int grade)
-	: name(name)
+	: name(name), grade(grade)
 {
-	try
-	{
-		if (grade < 1) throw Bureaucrat::GradeTooHighException();
-		else if (grade > 150) throw Bureaucrat::GradeTooLowException();
-		this->grade = grade;
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
+	if (grade < 1) throw Bureaucrat::GradeTooHighException();
+	else if (grade > 150) throw Bureaucrat::GradeTooLowException();
 }
 
 Bureaucrat::Bureaucrat(const Bureaucrat& obj)
@@ -80,22 +72,12 @@ const char* Bureaucrat::GradeTooHighException::what() const throw()
 	return ("grade is too high");
 }
 
-std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj)
-{
-	os << obj.getName() << ", bureaucrat grade " << obj.getGrade() << ".";
-	return (os);
-}
-
 void Bureaucrat::signForm(AForm& form)
 {
 	try
 	{
-		if (form.getIsSigned()) std::cout << "The form is already signed\n";
-		else 
-		{
-			form.beSigned(*this);
-			std::cout << name << " signed " << form.getName() << std::endl;
-		}
+		form.beSigned(*this);
+		std::cout << name << " signed " << form.getName() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -108,12 +90,8 @@ void Bureaucrat::executeForm(AForm const & form)
 {
 	try
 	{
-		if (!form.getIsSigned()) std::cout << "The form is not signed\n";
-		else 
-		{
-			std::cout << name << " execute " << form.getName() << std::endl;
-			form.execute(*this);
-		}
+		form.execute(*this);
+		std::cout << name << " executed " << form.getName() << std::endl;
 	}
 	catch(const std::exception& e)
 	{
@@ -122,3 +100,8 @@ void Bureaucrat::executeForm(AForm const & form)
 	}
 }
 
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& obj)
+{
+	os << obj.getName() << ", bureaucrat grade " << obj.getGrade() << ".";
+	return (os);
+}
