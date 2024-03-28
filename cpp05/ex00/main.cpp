@@ -9,14 +9,7 @@ int main()
 			std::cout << "Make Bureaucrat 'A' grade '0'\n";
 			Bureaucrat A("A", 0);
 			std::cout << A << std::endl;
-			try
-			{
-				A.incrementGrade();
-			}
-			catch(const std::exception& e)
-			{
-				std::cerr << e.what() << '\n';
-			}
+			A.incrementGrade();
 			std::cout << A << std::endl;
 		}
 		catch(const std::exception& e)
@@ -28,14 +21,7 @@ int main()
 			std::cout << "Make Bureaucrat 'B' grade '1'\n";
 			Bureaucrat B("B", 1);
 			std::cout << B << std::endl;
-			try
-			{
-				B.incrementGrade();
-			}
-			catch(const std::exception& e)
-			{
-				std::cerr << e.what() << '\n';
-			}
+			B.incrementGrade();
 			std::cout << B << std::endl;
 		}
 		catch(const std::exception& e)
@@ -47,14 +33,7 @@ int main()
 			std::cout << "Make Bureaucrat 'C' grade '75'\n";
 			Bureaucrat C("C", 75);
 			std::cout << C << std::endl;
-			try
-			{
-				C.incrementGrade();
-			}
-			catch(const std::exception& e)
-			{
-				std::cerr << e.what() << '\n';
-			}
+			C.incrementGrade();
 			std::cout << C << std::endl;
 		}
 		catch(const std::exception& e)
@@ -66,14 +45,7 @@ int main()
 			std::cout << "Make Bureaucrat 'D' grade '150'\n";
 			Bureaucrat D("D", 150);
 			std::cout << D << std::endl;
-			try
-			{
-				D.incrementGrade();
-			}
-			catch(const std::exception& e)
-			{
-				std::cerr << e.what() << '\n';
-			}
+			D.incrementGrade();
 			std::cout << D << std::endl;
 		}
 		catch(const std::exception& e)
@@ -85,14 +57,7 @@ int main()
 		{
 			Bureaucrat E("E", 151);
 			std::cout << E << std::endl;
-			try
-			{
-				E.incrementGrade();
-			}
-			catch(const std::exception& e)
-			{
-				std::cerr << e.what() << '\n';
-			}
+			E.incrementGrade();
 			std::cout << E << std::endl;
 		}
 		catch(const std::exception& e)
@@ -108,14 +73,7 @@ int main()
 			std::cout << "Make Bureaucrat 'A' grade '0'\n";
 			Bureaucrat A("A", 0);
 			std::cout << A << std::endl;
-			try
-			{
-				A.decrementGrade();
-			}
-			catch(const std::exception& e)
-			{
-				std::cerr << e.what() << '\n';
-			}
+			A.decrementGrade();
 			std::cout << A << std::endl;
 		}
 		catch(const std::exception& e)
@@ -127,14 +85,7 @@ int main()
 			std::cout << "Make Bureaucrat 'B' grade '1'\n";
 			Bureaucrat B("B", 1);
 			std::cout << B << std::endl;
-			try
-			{
-				B.decrementGrade();
-			}
-			catch(const std::exception& e)
-			{
-				std::cerr << e.what() << '\n';
-			}
+			B.decrementGrade();
 			std::cout << B << std::endl;
 		}
 		catch(const std::exception& e)
@@ -146,14 +97,7 @@ int main()
 			std::cout << "Make Bureaucrat 'C' grade '75'\n";
 			Bureaucrat C("C", 75);
 			std::cout << C << std::endl;
-			try
-			{
-				C.decrementGrade();
-			}
-			catch(const std::exception& e)
-			{
-				std::cerr << e.what() << '\n';
-			}
+			C.decrementGrade();
 			std::cout << C << std::endl;
 		}
 		catch(const std::exception& e)
@@ -165,14 +109,7 @@ int main()
 			std::cout << "Make Bureaucrat 'D' grade '150'\n";
 			Bureaucrat D("D", 150);
 			std::cout << D << std::endl;
-			try
-			{
-				D.decrementGrade();
-			}
-			catch(const std::exception& e)
-			{
-				std::cerr << e.what() << '\n';
-			}
+			D.decrementGrade();
 			std::cout << D << std::endl;
 		}
 		catch(const std::exception& e)
@@ -184,14 +121,7 @@ int main()
 		{
 			Bureaucrat E("E", 151);
 			std::cout << E << std::endl;
-			try
-			{
-				E.decrementGrade();
-			}
-			catch(const std::exception& e)
-			{
-				std::cerr << e.what() << '\n';
-			}
+			E.decrementGrade();
 			std::cout << E << std::endl;
 		}
 		catch(const std::exception& e)

@@ -38,14 +38,28 @@ int Bureaucrat::getGrade() const
 
 void Bureaucrat::incrementGrade()
 {
-	if (grade == 1) throw Bureaucrat::GradeTooHighException();
-	grade--;
+	try
+	{
+		if (grade == 1) throw Bureaucrat::GradeTooHighException();
+		grade--;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 }
 
 void Bureaucrat::decrementGrade()
 {
-	if (grade == 150) throw Bureaucrat::GradeTooLowException();
-	grade++;
+	try
+	{
+		if (grade == 150) throw Bureaucrat::GradeTooLowException();
+		grade++;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << e.what() << '\n';
+	}
 }
 
 const char* Bureaucrat::GradeTooLowException::what() const throw()
