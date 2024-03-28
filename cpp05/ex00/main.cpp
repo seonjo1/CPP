@@ -6,7 +6,7 @@ int main()
 		std::cout << "\n\nINCREMENT GRADE TEST\n\n";
 		try
 		{
-			std::cout << "Make Bureaucrat 'A' grade '0'\n";
+			std::cout << "Create Bureaucrat 'A' grade '0'\n";
 			Bureaucrat A("A", 0);
 			std::cout << A << std::endl;
 			A.incrementGrade();
@@ -18,7 +18,7 @@ int main()
 		}
 		try
 		{
-			std::cout << "Make Bureaucrat 'B' grade '1'\n";
+			std::cout << "Create Bureaucrat 'B' grade '1'\n";
 			Bureaucrat B("B", 1);
 			std::cout << B << std::endl;
 			B.incrementGrade();
@@ -30,7 +30,7 @@ int main()
 		}
 		try
 		{
-			std::cout << "Make Bureaucrat 'C' grade '75'\n";
+			std::cout << "Create Bureaucrat 'C' grade '75'\n";
 			Bureaucrat C("C", 75);
 			std::cout << C << std::endl;
 			C.incrementGrade();
@@ -42,7 +42,7 @@ int main()
 		}
 		try
 		{
-			std::cout << "Make Bureaucrat 'D' grade '150'\n";
+			std::cout << "Create Bureaucrat 'D' grade '150'\n";
 			Bureaucrat D("D", 150);
 			std::cout << D << std::endl;
 			D.incrementGrade();
@@ -52,7 +52,7 @@ int main()
 		{
 			std::cerr << e.what() << '\n';
 		}
-		std::cout << "Make Bureaucrat 'E' grade '151'\n";
+		std::cout << "Create Bureaucrat 'E' grade '151'\n";
 		try
 		{
 			Bureaucrat E("E", 151);
@@ -70,7 +70,7 @@ int main()
 		std::cout << "\n\nDECREMENT GRADE TEST\n\n";
 		try
 		{
-			std::cout << "Make Bureaucrat 'A' grade '0'\n";
+			std::cout << "Create Bureaucrat 'A' grade '0'\n";
 			Bureaucrat A("A", 0);
 			std::cout << A << std::endl;
 			A.decrementGrade();
@@ -82,7 +82,7 @@ int main()
 		}
 		try
 		{
-			std::cout << "Make Bureaucrat 'B' grade '1'\n";
+			std::cout << "Create Bureaucrat 'B' grade '1'\n";
 			Bureaucrat B("B", 1);
 			std::cout << B << std::endl;
 			B.decrementGrade();
@@ -94,7 +94,7 @@ int main()
 		}
 		try
 		{
-			std::cout << "Make Bureaucrat 'C' grade '75'\n";
+			std::cout << "Create Bureaucrat 'C' grade '75'\n";
 			Bureaucrat C("C", 75);
 			std::cout << C << std::endl;
 			C.decrementGrade();
@@ -106,7 +106,7 @@ int main()
 		}
 		try
 		{
-			std::cout << "Make Bureaucrat 'D' grade '150'\n";
+			std::cout << "Create Bureaucrat 'D' grade '150'\n";
 			Bureaucrat D("D", 150);
 			std::cout << D << std::endl;
 			D.decrementGrade();
@@ -116,7 +116,7 @@ int main()
 		{
 			std::cerr << e.what() << '\n';
 		}
-		std::cout << "Make Bureaucrat 'E' grade '151'\n";
+		std::cout << "Create Bureaucrat 'E' grade '151'\n";
 		try
 		{
 			Bureaucrat E("E", 151);

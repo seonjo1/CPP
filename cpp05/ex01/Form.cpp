@@ -7,18 +7,10 @@ Form::Form(std::string name, int GradeRequiredToSign, int GradeRequiredToExecute
 	: name(name), isSigned(false), GradeRequiredToSign(GradeRequiredToSign), 
 		GradeRequiredToExecute(GradeRequiredToExecute)
 {
-	try
-	{
-		if (GradeRequiredToSign < 1 || GradeRequiredToExecute < 1)
-			throw Form::GradeTooHighException();
-		else if (GradeRequiredToSign > 150 || GradeRequiredToExecute > 150)
-			throw Form::GradeTooLowException();
-	}
-	catch(const std::exception& e)
-	{
-		std::cerr << e.what() << '\n';
-	}
-	
+	if (GradeRequiredToSign < 1 || GradeRequiredToExecute < 1)
+		throw Form::GradeTooHighException();
+	else if (GradeRequiredToSign > 150 || GradeRequiredToExecute > 150)
+		throw Form::GradeTooLowException();
 }
 
 Form::Form(const Form& obj)

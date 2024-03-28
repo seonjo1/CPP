@@ -27,7 +27,7 @@ public:
 	Form(std::string name, int GradeRequiredToSign, int GradeRequiredToExecute);
 	Form(const Form& obj);
 	~Form();
-	Form&	operator=(const Form& obj);
+	Form& operator=(const Form& obj);
 	std::string getName() const;
 	bool getIsSigned() const;
 	int getGradeRequiredToSign() const;
