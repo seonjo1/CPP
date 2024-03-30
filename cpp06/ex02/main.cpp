@@ -1,3 +1,4 @@
+#include <cstdlib>
 #include "func.hpp"
 
 int main()
@@ -19,5 +20,7 @@ int main()
 	catch(const std::bad_alloc& e)
 	{
 		std::cerr << e.what() << '\n';
+		std::exit(EXIT_FAILURE);
 	}
+	return (0);
 }
