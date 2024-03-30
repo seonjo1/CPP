@@ -78,6 +78,8 @@ bool isFloat(std::string& str)
 	bool containDigit = false;
 	int i = 0;
 	int len = str.length();
+	if (str[i] == '-' || str[i] == '+')
+		i++;
 	while (i < len && str[i] == '0')
 	{
 		i++;
@@ -91,6 +93,8 @@ bool isFloat(std::string& str)
 			containDigit = true;
 		else if (str[i] == '.')
 			dotNum++;
+		else
+			return (false);
 	}
 	if (dotNum == 1 && containDigit && str[len - 1] == 'f')
 		return (true);

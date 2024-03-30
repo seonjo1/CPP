@@ -2,6 +2,6 @@
 
 int main()
 {
-	std::cout << 9. << "\n";
+	std::cout << --.0f << "\n";
 	return (0);
 }
