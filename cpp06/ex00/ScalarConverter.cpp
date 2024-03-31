@@ -2,8 +2,14 @@
 
 void printOverflow(const char *str)
 {
-	std::cout << str << "overflow" <<std::endl;
+	std::cout << str << " (overflow)" <<std::endl;
 }
+
+void printUnderflow(const char *str)
+{
+	std::cout << str << " (underflow)" <<std::endl;
+}
+
 
 void printChar(char c)
 {
@@ -101,29 +107,86 @@ bool isFloat(std::string& str)
 	return (false);
 }
 
-// bool isDouble(std::string& str)
-// {
-// 	bool containDigit = false;
-// 	int i = 0;
-// 	int len = str.length();
-// 	while (i < len && str[i] == '0')
-// 	{
-// 		i++;
-// 		containDigit = true;
-// 	}
+bool isDouble(std::string& str)
+{
+	bool containDigit = false;
+	int i = 0;
+	int len = str.length();
+	if (str[i] == '-' || str[i] == '+')
+		i++;
+	while (i < len && str[i] == '0')
+	{
+		i++;
+		containDigit = true;
+	}
 
-// 	int dotNum = 0;
-// 	for (; i < len - 1; i++)
-// 	{
-// 		if (isdigit(str[i]))
-// 			containDigit = true;
-// 		else if (str[i] == '.')
-// 			dotNum++;
-// 	}
-// 	if (dotNum == 1 && containDigit && str[len - 1] == 'f')
-// 		return (true);
-// 	return (false);
-// }
+	int dotNum = 0;
+	for (; i < len; i++)
+	{
+		if (isdigit(str[i]))
+			containDigit = true;
+		else if (str[i] == '.')
+			dotNum++;
+		else
+			return (false);
+	}
+	if (dotNum == 1 && containDigit)
+		return (true);
+	return (false);
+}
+
+bool isNotSpecialValue(std::string& str)
+{
+	if (str == "-inff")
+	{
+		std::cout << "char: impossible\n";
+		std::cout << "int: impossible\n";
+		std::cout << "float: -inff\n";
+		std::cout << "double: -inf\n";
+		return (false);
+	}
+	else if (str == "+inff")
+	{
+		std::cout << "char: impossible\n";
+		std::cout << "int: impossible\n";
+		std::cout << "float: +inff\n";
+		std::cout << "double: +inf\n";
+		return (false);
+	}
+	else if (str == "nanf")
+	{
+		std::cout << "char: impossible\n";
+		std::cout << "int: impossible\n";
+		std::cout << "float: nanf\n";
+		std::cout << "double: nan\n";
+		return (false);
+	}
+	else if (str == "-inf")
+	{
+		std::cout << "char: impossible\n";
+		std::cout << "int: impossible\n";
+		std::cout << "float: -inff\n";
+		std::cout << "double: -inf\n";
+		return (false);
+	}
+	else if (str == "+inf")
+	{
+		std::cout << "char: impossible\n";
+		std::cout << "int: impossible\n";
+		std::cout << "float: +inff\n";
+		std::cout << "double: +inf\n";
+		return (false);
+	}
+	else if (str == "nan")
+	{
+		std::cout << "char: impossible\n";
+		std::cout << "int: impossible\n";
+		std::cout << "float: nanf\n";
+		std::cout << "double: nan\n";
+		return (false);
+	}
+	return (true);
+}
 
 void castChar(std::string& str)
 {	
@@ -168,7 +231,10 @@ void castFloat(std::string& str)
 	stream >> fp;
 	if (stream.fail())
 	{
-		std::cout << "float overflow\n";
+		if (str[1] == '.' || str[2] == '.')
+			std::cout << "float underflow\n";
+		else
+			std::cout << "float overflow\n";
 	}
 	else
 	{
@@ -188,6 +254,48 @@ void castFloat(std::string& str)
 	}
 }
 
+void castDouble(std::string& str)
+{
+	str = str.substr(0, str.length() - 1);
+	std::stringstream stream(str.c_str());
+
+	double fp;
+	stream >> fp;
+	if (stream.fail())
+	{
+		if (str[1] == '.' || str[2] == '.')
+			std::cout << "double underflow\n";
+		else
+			std::cout << "double overflow\n";
+	}
+	else
+	{
+		if (fp < CHAR_MIN || fp > CHAR_MAX)
+			printOverflow("char: ");
+		else
+			printChar(static_cast<char>(fp));
+
+		if (fp < INT_MIN || fp > INT_MAX)
+			printOverflow("int: ");
+		else
+			printInt(static_cast<int>(fp));
+
+		if (fp > std::numeric_limits<float>::max())
+			printOverflow("float: +inff");
+		else if (fp < -std::numeric_limits<float>::max())
+			printOverflow("float: -inff");
+		else if (fp < std::numeric_limits<float>::min() && fp > 0.0f)
+			printUnderflow("float: 0.0f");
+		else if (fp > -std::numeric_limits<float>::min() && fp < 0.0f)
+			printUnderflow("float: 0.0f");
+		else
+			printFloat(static_cast<float>(fp));
+
+		printDouble(fp);
+	}
+}
+
+
 void ScalarConverter::convert(std::string str)
 {
 	if (str.length() == 0)
@@ -198,12 +306,8 @@ void ScalarConverter::convert(std::string str)
 		castInt(str);
 	else if (isFloat(str))
 		castFloat(str);
-	else
+	else if (isDouble(str))
+		castDouble(str);
+	else if (isNotSpecialValue(str))
 		std::cout << "invalid argument\n";
-	// else if (isDouble(str))
-	// {
-
-	// }
-	// else if (isNotSpecialValue(str))
-	// 	std::cout << "Argument is invalid\n";
 }
