@@ -209,7 +209,7 @@ void castInt(std::string& str)
 	}
 	else
 	{
-		if (n < CHAR_MIN || n > CHAR_MAX)
+		if (n < std::numeric_limits<char>::min() || n > std::numeric_limits<char>::max())
 			printOverflow("char: ");
 		else
 			printChar(static_cast<char>(n));
@@ -238,12 +238,12 @@ void castFloat(std::string& str)
 	}
 	else
 	{
-		if (fp < CHAR_MIN || fp > CHAR_MAX)
+		if (fp < std::numeric_limits<char>::min() || fp > std::numeric_limits<char>::max())
 			printOverflow("char: ");
 		else
 			printChar(static_cast<char>(fp));
 
-		if (fp < INT_MIN || fp > INT_MAX)
+		if (fp < std::numeric_limits<int>::min() || fp > std::numeric_limits<int>::max())
 			printOverflow("int: ");
 		else
 			printInt(static_cast<int>(fp));
@@ -270,12 +270,12 @@ void castDouble(std::string& str)
 	}
 	else
 	{
-		if (fp < CHAR_MIN || fp > CHAR_MAX)
+		if (fp < std::numeric_limits<char>::min() || fp > std::numeric_limits<char>::max())
 			printOverflow("char: ");
 		else
 			printChar(static_cast<char>(fp));
 
-		if (fp < INT_MIN || fp > INT_MAX)
+		if (fp < std::numeric_limits<int>::min() || fp > std::numeric_limits<int>::max())
 			printOverflow("int: ");
 		else
 			printInt(static_cast<int>(fp));
