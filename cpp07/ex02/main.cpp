@@ -1,11 +1,11 @@
 #include <iostream>
 #include <Array.hpp>
 
-#include <cstdlib>
-void leaks_check()
-{
-	system("leaks _ex02");
-}
+// #include <cstdlib>
+// void leaks_check()
+// {
+// 	system("leaks _ex02");
+// }
 
 #define MAX_VAL 750
 int main(int, char**)
@@ -131,6 +131,6 @@ int main(int, char**)
 		std::cout << arrConst[4] << std::endl;
 	}
 
-	atexit(leaks_check);
+	// atexit(leaks_check);
 	return 0;
 }
