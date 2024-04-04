@@ -37,5 +37,4 @@ const T& max(const T& a, const T& b)
 	else return (b);
 }
 
-
 #endif

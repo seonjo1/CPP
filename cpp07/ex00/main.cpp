@@ -1,38 +1,55 @@
 #include "whatever.hpp"
+#include "Object.hpp"
 #include <iostream>
-#include <string>
 
-class Object
+std::ostream& operator<<(std::ostream& stream, const Object& obj)
 {
-private:
-	std::string name;
-	int num;
-public:
-	Object(std::string name, int num)
-		: name(name), num(num) {};
-	std::string getName() {	return (name); }
-	int getNum() { return (num); }
-	bool operator<(Object& obj) { return (this->num < obj.num);	}
-	bool operator>(Object& obj) { return (this->num > obj.num);	}
-};
+	stream << "name: " << obj.getName() << " / num: " << obj.getNum();
+	return (stream);
+}
 
-int main()
-{
-	Object obj1("seon", 1);
-	Object obj2("jo", 2);
-	std::cout << "min : " << min(obj1, obj2).getName() << std::endl;
-	std::cout << "max : " << max(obj1, obj2).getName() << std::endl;
-	swap(obj1, obj2);
-	std::cout << "obj1's name: " << obj1.getName() << "\nobj1's num: " << obj1.getNum() << std::endl;
-	std::cout << "obj2's name: " << obj2.getName() << "\nobj2's num: " << obj2.getNum() << std::endl;
+int main( void ) {
 
-	const Object obj3("seon", 3);
-	const Object obj4("jo", 4);
-	std::cout << "min : " << min(obj3, obj4).getName() << std::endl;
-	std::cout << "max : " << max(obj3, obj4).getName() << std::endl;
+	{
+		std::cout << "subject test\n";
+		int a = 2;
+		int b = 3;
+		::swap( a, b );
+		std::cout << "a = " << a << ", b = " << b << std::endl;
+		std::cout << "min( a, b ) = " << ::min( a, b ) << std::endl;
+		std::cout << "max( a, b ) = " << ::max( a, b ) << std::endl;
+		std::string c = "chaine1";
+		std::string d = "chaine2";
+		::swap(c, d);
+		std::cout << "c = " << c << ", d = " << d << std::endl;
+		std::cout << "min( c, d ) = " << ::min( c, d ) << std::endl;
+		std::cout << "max( c, d ) = " << ::max( c, d ) << std::endl;
+	}
 
-	std::cout << "min : " << min(obj1, obj4).getName() << std::endl;
-	std::cout << "max : " << max(obj1, obj4).getName() << std::endl;
+	{
+		std::cout << "\nseonjo test\n";
+		std::cout << "min, max test\n";
+		Object obj1("obj1", 1);
+		Object obj2("obj2", 2);
+		std::cout << "min : " << min(obj1, obj2) << std::endl;
+		std::cout << "max : " << max(obj1, obj2) << std::endl;
 
-	return (0);
+		std::cout << "\nswap test\n";
+		swap(obj1, obj2);
+		std::cout << "obj1 " << obj1 << std::endl;
+		std::cout << "obj2 " << obj2 << std::endl;
+		swap(obj1, obj2);
+
+		std::cout << "\nconst min, max test\n";
+		const Object obj3("obj3", 3);
+		const Object obj4("obj4", 4);
+		std::cout << "min : " << min(obj3, obj4) << std::endl;
+		std::cout << "max : " << max(obj3, obj4) << std::endl;
+
+		std::cout << "\nconst mix min, max test\n";
+		std::cout << "min : " << min(obj1, obj4) << std::endl;
+		std::cout << "max : " << max(obj1, obj4) << std::endl;
+	}	
+
+	return 0;
 }
