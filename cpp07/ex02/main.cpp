@@ -1,7 +1,7 @@
+#include "Array.hpp"
 #include <iostream>
-#include <Array.hpp>
+#include <ctime>
 
-// #include <cstdlib>
 // void leaks_check()
 // {
 // 	system("leaks _ex02");

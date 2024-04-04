@@ -1,6 +1,7 @@
 #ifndef ARRAY_HPP
 # define ARRAY_HPP
 
+# include <cstdlib>
 # include <exception>
 
 template <typename T>
