@@ -1,7 +1,8 @@
 #include <iostream>
 #include <Array.hpp>
+#include <cstdlib>
+#include <ctime>
 
-// #include <cstdlib>
 // void leaks_check()
 // {
 // 	system("leaks _ex02");
@@ -122,13 +123,13 @@ int main(int, char**)
 
 		std::cout << "\nconst test\n";
 
-		const Array<int> arrConst(5);
+		const int arrInt[5] = {0, 1, 2, 3, 4};
 
-		std::cout << arrConst[0] << std::endl;
-		std::cout << arrConst[1] << std::endl;
-		std::cout << arrConst[2] << std::endl;
-		std::cout << arrConst[3] << std::endl;
-		std::cout << arrConst[4] << std::endl;
+		std::cout << arrInt[0] << std::endl;
+		std::cout << arrInt[1] << std::endl;
+		std::cout << arrInt[2] << std::endl;
+		std::cout << arrInt[3] << std::endl;
+		std::cout << arrInt[4] << std::endl;
 	}
 
 	// atexit(leaks_check);
