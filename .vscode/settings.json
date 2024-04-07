@@ -71,7 +71,8 @@
 		"numeric": "cpp",
 		"random": "cpp",
 		"filesystem": "cpp",
-		"*.tpp": "cpp"
+		"*.tpp": "cpp",
+		"list": "cpp"
 	},
 	"C_Cpp.errorSquiggles": "disabled"
 }

@@ -3,7 +3,7 @@ CPP			:=	c++
 WFLAG		:=	-Wall -Wextra -Werror -std=c++98
 
 DIR			:=	./
-BASE		:=	main Object
+BASE		:=	main
 SRC			:=	$(addprefix $(DIR), $(addsuffix .cpp, $(BASE)))
 OBJ			:=	$(addprefix $(DIR), $(addsuffix .o, $(BASE)))
 

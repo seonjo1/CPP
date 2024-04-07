@@ -19,7 +19,7 @@ int main()
 
 	try
 	{
-		sp.addNumbers(100, 100);
+		sp.addNumbers(100, 1000);
 	}
 	catch(const std::exception& e)
 	{
