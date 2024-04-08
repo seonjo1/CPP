@@ -14,8 +14,10 @@ public:
 
 	typedef typename std::deque<T>::iterator iterator;
 
-	const iterator begin();
-	const iterator end();
+	iterator begin();
+	iterator end();
+	const iterator begin() const;
+	const iterator end() const;
 };
 
 #include "MutantStack.tpp"
