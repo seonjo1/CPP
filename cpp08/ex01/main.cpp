@@ -29,8 +29,9 @@ int main()
 	try
 	{
 		sp.addNumber(10);
-		std::cout << "last element input\n";
+		std::cout << "last element has been entered\n";
 		sp.addNumber(10);
+		std::cout << "error\n";
 	}
 	catch(const std::exception& e)
 	{

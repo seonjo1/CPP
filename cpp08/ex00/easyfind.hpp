@@ -7,8 +7,8 @@ int easyfind(const T& container, int num)
 {
 	int idx = std::find(container.begin(), container.end(), num) - container.begin();
 	if (idx == static_cast<int>(container.size()))
-		return (-1);
-	return (num);
+		idx = -1;
+	return (idx);
 }
 
 #endif
