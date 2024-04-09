@@ -62,7 +62,7 @@ int main(int argc, char **argv)
 {
 	argumentCheck(argc);
 
-	BitcoinExchange BE("data.csv");
+	BitcoinExchange& BE = BitcoinExchange::getIncetance("data.csv");
 
 	std::ifstream input;
 	openFile(input, argv[1]);

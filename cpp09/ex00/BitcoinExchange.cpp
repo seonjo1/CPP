@@ -1,7 +1,5 @@
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange() {};
-
 BitcoinExchange::BitcoinExchange(const char *dataFile)
 {
 	std::ifstream data;
@@ -23,17 +21,14 @@ BitcoinExchange::BitcoinExchange(const char *dataFile)
 	}
 }
 
-BitcoinExchange::BitcoinExchange(const BitcoinExchange& copy)
-	: map(copy.map) {};
+BitcoinExchange& BitcoinExchange::getIncetance(const char *dataFile)
+{
+	static BitcoinExchange BE(dataFile);
+	return (BE);
+}
 
 BitcoinExchange::~BitcoinExchange() {};
 
-BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& copy)
-{
-	if (this != &copy)
-		map = copy.map;
-	return (*this);
-}
 
 void BitcoinExchange::checkDate(int* dayList, int year, int month, int day)
 {
@@ -52,10 +47,6 @@ float BitcoinExchange::getExchangeRate(std::string date)
 	int year = convertingToInt(date.substr(0, 4));
 	int month = convertingToInt(date.substr(5, 2));
 	int day = convertingToInt(date.substr(8, 2));
-
-	// std::cout << "year : " << year << std::endl;
-	// std::cout << "month : " << month << std::endl;
-	// std::cout << "day : " << day << std::endl;
 
 	if ((year % 4 == 0 && year % 100 != 0) || year % 400 == 0)
 		checkDate(leapYearDay, year, month, day);

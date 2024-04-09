@@ -1,4 +1,4 @@
-NAME		:=	_ex01
+NAME		:=	RPN
 CPP			:=	c++
 WFLAG		:=	-Wall -Wextra -Werror -std=c++98
 
