@@ -1,34 +1,22 @@
 #ifndef RPN_HPP
 # define RPN_HPP
 
+# include <string>
+# include <stack>
+# include <cctype>
+
 class RPN
 {
 private:
+	std::stack<int> st;
 
 public:
 	RPN();
-	RPN(const RPN& obj);
+	RPN(const RPN& copy);
 	~RPN();
-	RPN&	operator=(const RPN& obj);
-
+	RPN& operator=(const RPN& copy);
+	void inputChar(char c);
+	int getResult();
 };
 
 #endif
-
-#include "RPN.hpp"
-
-RPN::RPN()
-{
-}
-
-RPN::RPN(const RPN& obj)
-{
-}
-
-RPN::~RPN()
-{
-}
-
-RPN& RPN::operator=(const RPN& obj)
-{
-}
