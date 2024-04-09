@@ -135,7 +135,7 @@ bool isDouble(std::string& str)
 	return (false);
 }
 
-bool isNotSpecialValue(std::string& str)
+f isNotSpecialValue(std::string& str)
 {
 	if (str == "-inff")
 	{
