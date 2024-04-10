@@ -1,4 +1,4 @@
-NAME		:=	_ex02
+NAME		:=	PmergeMe
 CPP			:=	c++
 WFLAG		:=	-Wall -Wextra -Werror -std=c++98
 
