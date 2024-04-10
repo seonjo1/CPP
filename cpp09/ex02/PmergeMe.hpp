@@ -8,6 +8,8 @@
 # include <algorithm>
 # include <iostream>
 
+# define BIT -2147483648
+
 class PmergeMe
 {
 private:
@@ -18,7 +20,7 @@ private:
 	int getSize();
 	int binarySearch(int val, int left, int right);
 	void insert(int idx, int insertIdx);
-	void removeZero();
+	void removeBIT();
 	void printVec();
 	void lastSort(int idx);
 

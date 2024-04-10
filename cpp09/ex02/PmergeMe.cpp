@@ -77,15 +77,15 @@ void PmergeMe::insert(int idx, int insertIdx)
 		vInsert.push_back(v[idx].back());
 		v[idx].pop_back();
 	}
-	vInsert.push_back(0);
+	vInsert.push_back(-1);
 	v.insert(v.begin() + insertIdx, vInsert);
 }
 
-void PmergeMe::removeZero()
+void PmergeMe::removeBIT()
 {
 	for (int i = 0; i < static_cast<int>(v.size()); i++)
 	{
-		if (v[i].back() == 0)
+		if (v[i].back() & BIT)
 			v[i].pop_back();
 	}
 }
@@ -137,7 +137,7 @@ void PmergeMe::sort()
 		int idx = nextJN + AddNum;
 		for (int i = 0; i < gap; i++)
 		{
-			if (v[idx].back() == 0)
+			if (v[idx].back() & BIT)
 			{
 				i--;
 				idx--;
@@ -151,7 +151,7 @@ void PmergeMe::sort()
 		}
 		k++;
 	} while (nextJN != maxIdx);
-	removeZero();
+	removeBIT();
 	if (vecSize & 1)
 		lastSort(vecSize - 1);
 	printVec();
