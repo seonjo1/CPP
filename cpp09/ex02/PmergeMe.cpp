@@ -12,19 +12,30 @@ PmergeMe::PmergeMe(int argc, char **argv)
 		if (ss.fail()) throw std::string("argument is not integer");
 		if (num < 1) throw std::string("argument is not positive integer");
 		v.push_back(std::vector<int>(1, num));
+		d.push_back(std::deque<int>(1, num));
 	}
 }
 
 PmergeMe::PmergeMe(const PmergeMe& copy)
-	: v(copy.v) {};
+	: v(copy.v), d(copy.d) {};
 
 PmergeMe::~PmergeMe() {};
 
 PmergeMe& PmergeMe::operator=(const PmergeMe& copy)
 {
 	if (this != &copy)
+	{
 		v = copy.v;
+		d = copy.d;
+	}
 	return (*this);
+}
+
+// vector 버전
+
+int PmergeMe::getElementSize()
+{
+	return (v.size());
 }
 
 int PmergeMe::getJacobsthalNumber(int k)
@@ -34,7 +45,7 @@ int PmergeMe::getJacobsthalNumber(int k)
 	return ((std::pow(2, k + 1) + n) / 3 - 1);
 }
 
-void PmergeMe::mergeElement(int idx1, int idx2)
+void PmergeMe::mergeElementV(int idx1, int idx2)
 {
 	while (!v[idx1].empty())
 	{
@@ -44,7 +55,7 @@ void PmergeMe::mergeElement(int idx1, int idx2)
 	v.erase(v.begin() + idx1);
 }
 
-int PmergeMe::getSize()
+int PmergeMe::getSizeV()
 {
 	int vecSize = 0;
 	int elementSize = v[0].size();
@@ -56,7 +67,7 @@ int PmergeMe::getSize()
 	return (vecSize);
 }
 
-int PmergeMe::binarySearch(int val, int left, int right)
+int PmergeMe::binarySearchV(int val, int left, int right)
 {
 	while (left <= right)
 	{
@@ -69,7 +80,7 @@ int PmergeMe::binarySearch(int val, int left, int right)
 	return (left);
 }
 
-void PmergeMe::insert(int idx, int insertIdx)
+void PmergeMe::insertV(int idx, int insertIdx)
 {
 	std::vector<int> vInsert;
 	for (int i = v[idx].size() / 2; i > 0; i--)
@@ -77,40 +88,30 @@ void PmergeMe::insert(int idx, int insertIdx)
 		vInsert.push_back(v[idx].back());
 		v[idx].pop_back();
 	}
-	vInsert.push_back(-1);
 	v.insert(v.begin() + insertIdx, vInsert);
 }
 
-void PmergeMe::removeBIT()
-{
-	for (int i = 0; i < static_cast<int>(v.size()); i++)
-	{
-		if (v[i].back() & BIT)
-			v[i].pop_back();
-	}
-}
+// void PmergeMe::printVec()
+// {
+// 	for (int i = 0; i < static_cast<int>(v.size()); i++)
+// 	{
+// 		std::cout << "v[" << i << "]\n";
+// 		for (int j = 0; j < static_cast<int>(v[i].size()); j++)
+// 			std::cout << v[i][j] << " ";
+// 		std::cout << std::endl;
+// 	}
+// }
 
-void PmergeMe::printVec()
+void PmergeMe::lastSortV(int idx)
 {
-	for (int i = 0; i < static_cast<int>(v.size()); i++)
-	{
-		std::cout << "v[" << i << "]\n";
-		for (int j = 0; j < static_cast<int>(v[i].size()); j++)
-			std::cout << v[i][j] << " ";
-		std::cout << std::endl;
-	}
-}
-
-void PmergeMe::lastSort(int idx)
-{
-	int insertIdx = binarySearch(v[idx].front(), 0, idx - 1);
+	int insertIdx = binarySearchV(v[idx].front(), 0, idx - 1);
 	v.insert(v.begin() + insertIdx, v[idx]);
 	v.erase(v.begin() + idx + 1);
 }
 
-void PmergeMe::sort()
+void PmergeMe::sortV()
 {
-	int vecSize = getSize();
+	int vecSize = getSizeV();
 
 	if (vecSize == 1) return ;
 
@@ -118,17 +119,18 @@ void PmergeMe::sort()
 	while (i < vecSize / 2)
 	{
 		if (v[i][0] < v[i + 1][0])
-			mergeElement(i, i + 1);
+			mergeElementV(i, i + 1);
 		else
-			mergeElement(i + 1, i);
+			mergeElementV(i + 1, i);
 		i++;
 	}
-	sort();
+	sortV();
 
 	int maxIdx = vecSize / 2 - 1;
 	int AddNum = 0;
 	int k = 1;
 	int nextJN, preJN;
+	int size = v[0].size();
 	do
 	{
 		preJN = getJacobsthalNumber(k - 1);
@@ -137,30 +139,162 @@ void PmergeMe::sort()
 		int idx = nextJN + AddNum;
 		for (int i = 0; i < gap; i++)
 		{
-			if (v[idx].back() & BIT)
+			if (static_cast<int>(v[idx].size()) != size)
 			{
 				i--;
 				idx--;
 			}
 			else
 			{
-				int insertIdx = binarySearch(v[idx].back(), 0, idx - 1);
-				insert(idx, insertIdx);
+				int insertIdx = binarySearchV(v[idx].back(), 0, idx - 1);
+				insertV(idx, insertIdx);
 				AddNum++;
 			}
 		}
 		k++;
 	} while (nextJN != maxIdx);
-	removeBIT();
 	if (vecSize & 1)
-		lastSort(vecSize - 1);
-	printVec();
+		lastSortV(vecSize - 1);
+	// printVec();
 }
 
-std::vector<int> PmergeMe::getResult()
+std::vector<int> PmergeMe::getResultV()
 {
 	std::vector<int> retVec;
 	for (int i = 0; i < static_cast<int>(v.size()); i++)
 		retVec.push_back(v[i][0]);
 	return (retVec);
+}
+
+
+// deque 버전
+
+std::deque<std::deque<int> >::iterator PmergeMe::getIterD(int i)
+{
+	std::deque<std::deque<int> >::iterator iter = d.begin();
+	
+	for (int j = 0; j < i; j++)
+		++iter;
+	return (iter);
+}
+
+void PmergeMe::mergeElementD(int idx1, int idx2)
+{
+	while (!d[idx1].empty())
+	{
+		d[idx2].push_back(d[idx1].back());
+		d[idx1].pop_back();
+	}
+	d.erase(getIterD(idx1));
+}
+
+int PmergeMe::getSizeD()
+{
+	int deqSize = 0;
+	int elementSize = d[0].size();
+
+	for (int i = 0; i < static_cast<int>(d.size()); i++)
+		if (static_cast<int>(d[i].size()) == elementSize)
+			deqSize++;
+
+	return (deqSize);
+}
+
+int PmergeMe::binarySearchD(int val, int left, int right)
+{
+	while (left <= right)
+	{
+		int mid = (left + right) / 2;
+		if (d[mid][0] <= val)
+			left = mid + 1;
+		else
+			right = mid - 1;
+	}
+	return (left);
+}
+
+void PmergeMe::insertD(int idx, int insertIdx)
+{
+	std::deque<int> dInsert;
+	for (int i = d[idx].size() / 2; i > 0; i--)
+	{
+		dInsert.push_back(d[idx].back());
+		d[idx].pop_back();
+	}
+	d.insert(getIterD(insertIdx), dInsert);
+}
+
+// void PmergeMe::printDeq()
+// {
+// 	for (int i = 0; i < static_cast<int>(d.size()); i++)
+// 	{
+// 		std::cout << "d[" << i << "]\n";
+// 		for (int j = 0; j < static_cast<int>(d[i].size()); j++)
+// 			std::cout << d[i][j] << " ";
+// 		std::cout << std::endl;
+// 	}
+// }
+
+void PmergeMe::lastSortD(int idx)
+{
+	int insertIdx = binarySearchD(d[idx].front(), 0, idx - 1);
+	d.insert(getIterD(insertIdx), d[idx]);
+	d.erase(getIterD(idx + 1));
+}
+
+void PmergeMe::sortD()
+{
+	int deqSize = getSizeD();
+
+	if (deqSize == 1) return ;
+
+	int i = 0;
+	while (i < deqSize / 2)
+	{
+		if (d[i][0] < d[i + 1][0])
+			mergeElementD(i, i + 1);
+		else
+			mergeElementD(i + 1, i);
+		i++;
+	}
+	sortD();
+
+	int maxIdx = deqSize / 2 - 1;
+	int AddNum = 0;
+	int k = 1;
+	int nextJN, preJN;
+	int size = d[0].size();
+	do
+	{
+		preJN = getJacobsthalNumber(k - 1);
+		nextJN = std::min(getJacobsthalNumber(k), maxIdx);
+		int gap = nextJN - preJN;
+		int idx = nextJN + AddNum;
+		for (int i = 0; i < gap; i++)
+		{
+			if (static_cast<int>(d[idx].size()) != size)
+			{
+				i--;
+				idx--;
+			}
+			else
+			{
+				int insertIdx = binarySearchD(d[idx].back(), 0, idx - 1);
+				insertD(idx, insertIdx);
+				AddNum++;
+			}
+		}
+		k++;
+	} while (nextJN != maxIdx);
+	if (deqSize & 1)
+		lastSortD(deqSize - 1);
+	// printDeq();
+}
+
+std::deque<int> PmergeMe::getResultD()
+{
+	std::deque<int> retDeq;
+	for (int i = 0; i < static_cast<int>(d.size()); i++)
+		retDeq.push_back(d[i][0]);
+	return (retDeq);
 }

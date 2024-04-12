@@ -1,6 +1,7 @@
 #ifndef PMERGEME_HPP
 # define PMERGEME_HPP
 
+# include <deque>
 # include <vector>
 # include <string>
 # include <sstream>
@@ -8,21 +9,28 @@
 # include <algorithm>
 # include <iostream>
 
-# define BIT -2147483648
-
 class PmergeMe
 {
 private:
 	std::vector<std::vector<int> > v;
+	std::deque<std::deque<int> > d;
+
 
 	int getJacobsthalNumber(int k);
-	void mergeElement(int idx1, int idx2);
-	int getSize();
-	int binarySearch(int val, int left, int right);
-	void insert(int idx, int insertIdx);
-	void removeBIT();
-	void printVec();
-	void lastSort(int idx);
+	void mergeElementV(int idx1, int idx2);
+	int getSizeV();
+	int binarySearchV(int val, int left, int right);
+	void insertV(int idx, int insertIdx);
+	void lastSortV(int idx);
+	// void printVec();
+
+	void mergeElementD(int idx1, int idx2);
+	int getSizeD();
+	int binarySearchD(int val, int left, int right);
+	void insertD(int idx, int insertIdx);
+	void lastSortD(int idx);
+	std::deque<std::deque<int> >::iterator getIterD(int i);
+	// void printDeq();
 
 public:
 	PmergeMe();
@@ -30,8 +38,13 @@ public:
 	PmergeMe(const PmergeMe& copy);
 	~PmergeMe();
 	PmergeMe& operator=(const PmergeMe& copy);
-	void sort();
-	std::vector<int> getResult();
+
+	void sortV();
+	void sortD();
+	std::vector<int> getResultV();
+	std::deque<int> getResultD();
+	int getElementSize();
 };
+
 
 #endif
