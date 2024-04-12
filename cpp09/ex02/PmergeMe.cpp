@@ -6,6 +6,10 @@ PmergeMe::PmergeMe(int argc, char **argv)
 {
 	for (int i = 1; i < argc; i++)
 	{
+		int j = 0;
+		while (argv[i][j])
+			if (!isdigit(argv[i][j++])) throw std::string("argument is not integer");
+	
 		int num;
 		std::stringstream ss(argv[i]);
 		ss >> num;

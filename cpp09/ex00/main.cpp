@@ -4,7 +4,7 @@ void argumentCheck(int argc)
 {
 	if (argc != 2)
 	{
-		std::cerr << "Error: please input one argument\n";
+		std::cout << "Error: please input one argument\n";
 		std::exit(1);
 	}
 }
@@ -14,7 +14,7 @@ void openFile(std::ifstream& input, char *file)
 	input.open(file);
 	if (!input.is_open())
 	{
-		std::cerr << "Error: fail to open input file\n";
+		std::cout << "Error: fail to open input file\n";
 		std::exit(1);
 	}
 }
@@ -33,7 +33,7 @@ float getValue(std::string line)
 	int dotNum = 0;
 	int length = static_cast<int>(line.size());
 
-	if (line[i] == '+') i++;
+	if (line[i] == '+' || line[i] == '-') i++;
 	for (; i < length; i++)
 	{
 		if (line[i] == '.')
@@ -78,7 +78,7 @@ int main(int argc, char **argv)
 		}
 		catch(const std::string& e)
 		{
-			std::cerr << e << '\n';
+			std::cout << e << '\n';
 		}
 	}
 

@@ -16,7 +16,7 @@ BitcoinExchange::BitcoinExchange(const char *dataFile)
 	}
 	else
 	{
-		std::cerr << "Error: fail to open data file\n";
+		std::cout << "Error: fail to open data file\n";
 		std::exit(1);
 	}
 }
@@ -54,11 +54,9 @@ float BitcoinExchange::getExchangeRate(std::string date)
 		checkDate(defaultDay, year, month, day);
 
 	int key = ((((year << 4) | month) << 5) | day);
-	std::map<int, float>::iterator iter = map.lower_bound(key);
-	if (iter == map.end()) return ((--map.end())->second);
-	else if (iter == map.begin()) return (iter->second);
-	else if (iter->first == key) return (iter->second);
-	else return ((--iter)->second);
+	std::map<int, float>::iterator iter = map.upper_bound(key);
+	if (iter != map.begin()) return ((--iter)->second);
+	else throw std::string("Error: invalid date");
 }
 
 int BitcoinExchange::convertingToInt(std::string str)
@@ -100,6 +98,6 @@ void BitcoinExchange::inputData(std::string line)
 	}
 	catch(const std::string& e)
 	{
-		std::cerr << e << '\n';
+		std::cout << e << '\n';
 	}
 }

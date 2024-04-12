@@ -38,7 +38,7 @@ int main(int argc, char **argv)
 		if (argc == 1) throw std::string("too few argument");
 		PmergeMe PM(argc, argv);
 
-		std::cout << "Beform: ";
+		std::cout << "Before: ";
 		printVector(PM.getResultV());
 
 		struct timeval startV, endV;
@@ -52,8 +52,8 @@ int main(int argc, char **argv)
 		gettimeofday(&startL, 0);
 		PM.sortL();
 		gettimeofday(&endL, 0);
-		std::cout << "After:  ";
-		printList(PM.getResultL());
+		// std::cout << "After:  ";
+		// printList(PM.getResultL());
 
 		std::cout << "Time to process a range of   " 
 			<< PM.getElementSize() 
@@ -63,13 +63,13 @@ int main(int argc, char **argv)
 
 		std::cout << "Time to process a range of   " 
 			<< PM.getElementSize() 
-			<< " elements with std::List : "
+			<< " elements with std::List :   "
 			<< timeCal(startL, endL) 
 			<< " us" << std::endl;
 	}
 	catch(const std::string& e)
 	{
-		std::cerr << e << '\n';
+		std::cout << e << '\n';
 		return (1);
 	}
 	

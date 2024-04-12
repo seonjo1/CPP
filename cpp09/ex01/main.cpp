@@ -19,7 +19,7 @@ int main(int argc, char **argv)
 	}
 	catch(const std::string& e)
 	{
-		std::cerr << e << '\n';
+		std::cout << e << '\n';
 		return (1);
 	}
 	return (0);
