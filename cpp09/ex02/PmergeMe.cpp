@@ -8,13 +8,13 @@ PmergeMe::PmergeMe(int argc, char **argv)
 	{
 		int j = 0;
 		while (argv[i][j])
-			if (!isdigit(argv[i][j++])) throw std::string("argument is not integer");
+			if (!isdigit(argv[i][j++])) throw std::string("Error");
 	
 		int num;
 		std::stringstream ss(argv[i]);
 		ss >> num;
-		if (ss.fail()) throw std::string("argument is not integer");
-		if (num < 1) throw std::string("argument is not positive integer");
+		if (ss.fail()) throw std::string("Error");
+		if (num < 1) throw std::string("Error");
 		v.push_back(std::vector<int>(1, num));
 		l.push_back(std::list<int>(1, num));
 	}
