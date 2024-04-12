@@ -1,7 +1,7 @@
 #ifndef PMERGEME_HPP
 # define PMERGEME_HPP
 
-# include <deque>
+# include <list>
 # include <vector>
 # include <string>
 # include <sstream>
@@ -13,7 +13,7 @@ class PmergeMe
 {
 private:
 	std::vector<std::vector<int> > v;
-	std::deque<std::deque<int> > d;
+	std::list<std::list<int> > l;
 
 
 	int getJacobsthalNumber(int k);
@@ -24,13 +24,14 @@ private:
 	void lastSortV(int idx);
 	// void printVec();
 
-	void mergeElementD(int idx1, int idx2);
-	int getSizeD();
-	int binarySearchD(int val, int left, int right);
-	void insertD(int idx, int insertIdx);
-	void lastSortD(int idx);
-	std::deque<std::deque<int> >::iterator getIterD(int i);
-	// void printDeq();
+	void mergeElementL(int idx1, int idx2);
+	int getSizeL();
+	int binarySearchL(int val, int left, int right);
+	void insertL(int idx, int insertIdx);
+	void lastSortL(int idx);
+	// void printLst();
+	std::list<std::list<int> >::iterator getIterL(int idx);
+	std::list<int>::iterator getIterLL(int idx1, int idx2);
 
 public:
 	PmergeMe();
@@ -40,11 +41,10 @@ public:
 	PmergeMe& operator=(const PmergeMe& copy);
 
 	void sortV();
-	void sortD();
+	void sortL();
 	std::vector<int> getResultV();
-	std::deque<int> getResultD();
+	std::list<int> getResultL();
 	int getElementSize();
 };
-
 
 #endif

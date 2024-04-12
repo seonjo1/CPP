@@ -1,6 +1,6 @@
 #include "PmergeMe.hpp"
 #include <iostream>
-#include <ctime>
+#include <sys/time.h>
 
 void printVector(std::vector<int> v)
 {
@@ -9,11 +9,26 @@ void printVector(std::vector<int> v)
 	std::cout << std::endl;
 }
 
-void printDeque(std::deque<int> d)
+void printList(std::list<int> l)
 {
-	for (int i = 0; i < static_cast<int>(d.size()); i++)
-		std::cout << d[i] << " ";
+	std::list<int>::iterator iter = l.begin();
+	for (; iter != l.end(); iter++)
+		std::cout << *(iter) << " ";
 	std::cout << std::endl;
+}
+
+int timeCal(struct timeval start, struct timeval end)
+{
+	int sec = end.tv_sec - start.tv_sec;
+	int usec = end.tv_usec - start.tv_usec;
+
+	if (usec < 0)
+	{
+		sec--;
+		usec += 1000000;
+	}
+
+	return (sec * 1000000 + usec);
 }
 
 int main(int argc, char **argv)
@@ -26,30 +41,30 @@ int main(int argc, char **argv)
 		std::cout << "Beform: ";
 		printVector(PM.getResultV());
 
-		struct timespec startV, endV;
-		clock_gettime(CLOCK_MONOTONIC, &startV);
+		struct timeval startV, endV;
+		gettimeofday(&startV, 0);
 		PM.sortV();
-		clock_gettime(CLOCK_MONOTONIC, &endV);
+		gettimeofday(&endV, 0);
 		std::cout << "After:  ";
 		printVector(PM.getResultV());
 
-		struct timespec startD, endD;
-		clock_gettime(CLOCK_MONOTONIC, &startD);
-		PM.sortD();
-		clock_gettime(CLOCK_MONOTONIC, &endD);
-		// std::cout << "AfterD: ";
-		// printDeque(PM.getResultD());
+		struct timeval startL, endL;
+		gettimeofday(&startL, 0);
+		PM.sortL();
+		gettimeofday(&endL, 0);
+		std::cout << "After:  ";
+		printList(PM.getResultL());
 
 		std::cout << "Time to process a range of   " 
 			<< PM.getElementSize() 
 			<< " elements with std::Vector : " 
-			<< (static_cast<double>(endV.tv_nsec) - static_cast<double>(startV.tv_nsec)) / 1000 
+			<< timeCal(startV, endV) 
 			<< " us" << std::endl;
 
 		std::cout << "Time to process a range of   " 
 			<< PM.getElementSize() 
-			<< " elements with std::Deque : "
-			<< (static_cast<double>(endD.tv_nsec) - static_cast<double>(startD.tv_nsec)) / 1000 
+			<< " elements with std::List : "
+			<< timeCal(startL, endL) 
 			<< " us" << std::endl;
 	}
 	catch(const std::string& e)

@@ -12,12 +12,12 @@ PmergeMe::PmergeMe(int argc, char **argv)
 		if (ss.fail()) throw std::string("argument is not integer");
 		if (num < 1) throw std::string("argument is not positive integer");
 		v.push_back(std::vector<int>(1, num));
-		d.push_back(std::deque<int>(1, num));
+		l.push_back(std::list<int>(1, num));
 	}
 }
 
 PmergeMe::PmergeMe(const PmergeMe& copy)
-	: v(copy.v), d(copy.d) {};
+	: v(copy.v), l(copy.l) {};
 
 PmergeMe::~PmergeMe() {};
 
@@ -26,7 +26,7 @@ PmergeMe& PmergeMe::operator=(const PmergeMe& copy)
 	if (this != &copy)
 	{
 		v = copy.v;
-		d = copy.d;
+		l = copy.l;
 	}
 	return (*this);
 }
@@ -167,45 +167,51 @@ std::vector<int> PmergeMe::getResultV()
 }
 
 
-// deque 버전
+// list 버전
 
-std::deque<std::deque<int> >::iterator PmergeMe::getIterD(int i)
+std::list<std::list<int> >::iterator PmergeMe::getIterL(int idx)
 {
-	std::deque<std::deque<int> >::iterator iter = d.begin();
-	
-	for (int j = 0; j < i; j++)
+	std::list<std::list<int> >::iterator iter = l.begin();
+	for (int i = 0; i < idx; i++)
 		++iter;
 	return (iter);
 }
 
-void PmergeMe::mergeElementD(int idx1, int idx2)
+std::list<int>::iterator PmergeMe::getIterLL(int idx1, int idx2)
 {
-	while (!d[idx1].empty())
+	std::list<int>::iterator iter = (*getIterL(idx1)).begin();
+	for (int i = 0; i < idx2; i++)
+		++iter;
+	return (iter);
+}
+
+void PmergeMe::mergeElementL(int idx1, int idx2)
+{
+	while (!(*getIterL(idx1)).empty())
 	{
-		d[idx2].push_back(d[idx1].back());
-		d[idx1].pop_back();
+		(*getIterL(idx2)).push_back((*getIterL(idx1)).back());
+		(*getIterL(idx1)).pop_back();
 	}
-	d.erase(getIterD(idx1));
+	l.erase(getIterL(idx1));
 }
 
-int PmergeMe::getSizeD()
+int PmergeMe::getSizeL()
 {
-	int deqSize = 0;
-	int elementSize = d[0].size();
+	int lstSize = 0;
+	int elementSize = (*getIterL(0)).size();
 
-	for (int i = 0; i < static_cast<int>(d.size()); i++)
-		if (static_cast<int>(d[i].size()) == elementSize)
-			deqSize++;
-
-	return (deqSize);
+	for (int i = 0; i < static_cast<int>(l.size()); i++)
+		if (static_cast<int>((*getIterL(i)).size()) == elementSize)
+			lstSize++;
+	return (lstSize);
 }
 
-int PmergeMe::binarySearchD(int val, int left, int right)
+int PmergeMe::binarySearchL(int val, int left, int right)
 {
 	while (left <= right)
 	{
 		int mid = (left + right) / 2;
-		if (d[mid][0] <= val)
+		if ((*getIterLL(mid, 0)) <= val)
 			left = mid + 1;
 		else
 			right = mid - 1;
@@ -213,57 +219,57 @@ int PmergeMe::binarySearchD(int val, int left, int right)
 	return (left);
 }
 
-void PmergeMe::insertD(int idx, int insertIdx)
+void PmergeMe::insertL(int idx, int insertIdx)
 {
-	std::deque<int> dInsert;
-	for (int i = d[idx].size() / 2; i > 0; i--)
+	std::list<int> lInsert;
+	for (int i = (*getIterL(idx)).size() / 2; i > 0; i--)
 	{
-		dInsert.push_back(d[idx].back());
-		d[idx].pop_back();
+		lInsert.push_back((*getIterL(idx)).back());
+		(*getIterL(idx)).pop_back();
 	}
-	d.insert(getIterD(insertIdx), dInsert);
+	l.insert(getIterL(insertIdx), lInsert);
 }
 
-// void PmergeMe::printDeq()
+// void PmergeMe::printLst()
 // {
-// 	for (int i = 0; i < static_cast<int>(d.size()); i++)
+// 	for (int i = 0; i < static_cast<int>(l.size()); i++)
 // 	{
-// 		std::cout << "d[" << i << "]\n";
-// 		for (int j = 0; j < static_cast<int>(d[i].size()); j++)
-// 			std::cout << d[i][j] << " ";
+// 		std::cout << "l[" << i << "]\n";
+// 		for (int j = 0; j < static_cast<int>((*getIterL(i)).size()); j++)
+// 			std::cout << (*getIterLL(i, j)) << " ";
 // 		std::cout << std::endl;
 // 	}
 // }
 
-void PmergeMe::lastSortD(int idx)
+void PmergeMe::lastSortL(int idx)
 {
-	int insertIdx = binarySearchD(d[idx].front(), 0, idx - 1);
-	d.insert(getIterD(insertIdx), d[idx]);
-	d.erase(getIterD(idx + 1));
+	int insertIdx = binarySearchL((*getIterL(idx)).front(), 0, idx - 1);
+	l.insert(getIterL(insertIdx), (*getIterL(idx)));
+	l.erase(getIterL(idx + 1));
 }
 
-void PmergeMe::sortD()
+void PmergeMe::sortL()
 {
-	int deqSize = getSizeD();
+	int lstSize = getSizeL();
 
-	if (deqSize == 1) return ;
+	if (lstSize == 1) return ;
 
 	int i = 0;
-	while (i < deqSize / 2)
+	while (i < lstSize / 2)
 	{
-		if (d[i][0] < d[i + 1][0])
-			mergeElementD(i, i + 1);
+		if ((*getIterLL(i, 0)) < (*getIterLL(i + 1, 0)))
+			mergeElementL(i, i + 1);
 		else
-			mergeElementD(i + 1, i);
+			mergeElementL(i + 1, i);
 		i++;
 	}
-	sortD();
+	sortL();
 
-	int maxIdx = deqSize / 2 - 1;
+	int maxIdx = lstSize / 2 - 1;
 	int AddNum = 0;
 	int k = 1;
 	int nextJN, preJN;
-	int size = d[0].size();
+	int size = (*getIterL(0)).size();
 	do
 	{
 		preJN = getJacobsthalNumber(k - 1);
@@ -272,29 +278,29 @@ void PmergeMe::sortD()
 		int idx = nextJN + AddNum;
 		for (int i = 0; i < gap; i++)
 		{
-			if (static_cast<int>(d[idx].size()) != size)
+			if (static_cast<int>((*getIterL(idx)).size()) != size)
 			{
 				i--;
 				idx--;
 			}
 			else
 			{
-				int insertIdx = binarySearchD(d[idx].back(), 0, idx - 1);
-				insertD(idx, insertIdx);
+				int insertIdx = binarySearchL((*getIterL(idx)).back(), 0, idx - 1);
+				insertL(idx, insertIdx);
 				AddNum++;
 			}
 		}
 		k++;
 	} while (nextJN != maxIdx);
-	if (deqSize & 1)
-		lastSortD(deqSize - 1);
-	// printDeq();
+	if (lstSize & 1)
+		lastSortL(lstSize - 1);
+	// printLst();
 }
 
-std::deque<int> PmergeMe::getResultD()
+std::list<int> PmergeMe::getResultL()
 {
-	std::deque<int> retDeq;
-	for (int i = 0; i < static_cast<int>(d.size()); i++)
-		retDeq.push_back(d[i][0]);
-	return (retDeq);
+	std::list<int> retLst;
+	for (int i = 0; i < static_cast<int>(l.size()); i++)
+		retLst.push_back((*getIterLL(i, 0)));
+	return (retLst);
 }
