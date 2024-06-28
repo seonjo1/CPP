@@ -252,9 +252,106 @@
   
 ## CPP05
 
+### ex00
+
+**[Exception 1]**
+
+- Bureaucrat 클래스 구현
+  - 멤버 변수
+    - string name
+    - int grade
+  - 멤버 함수
+    - incrementGrade()
+    - decrementGrade()
+  - 예외 클래스 구현
+    - grade 가 1 보다 작아지는 경우 GradeTooHighException 예외 발생
+    - grade 가 150 보다 커지는 경우 GradeTooLowException 예외 발생
+
+### ex01
+
+**[Exception 2]**
+
+- Form 클래스 구현
+  - 서명하고 실행할 수 있는 클래스
+  - 서명과 실행에 필요한 grade 가 정해진다.
+  - ex00과 같이 서명이나 실행하려는 Bureaucrat 의 등급이 Form의 그것보다 낮으면 예외를 발생시킨다.
+  - 이미 서명이 된 Form 에 서명하려고 해도 예외를 발생시킨다.
+
+### ex02
+
+**[Exception & 다형성 1]**
+
+- Form 클래스를 추상 클래스인 AForm 으로 변경
+- AForm 을 상속받는 클래스 PresidentialPardonForm, RobotomyRequestForm, ShrubberyCreationForm 3개를 구현
+  - PresidentialPardonForm
+    - 서명이 됐다면 실행시 대통령 사면을 받았다는 문구 출력
+  - RobotomyRequestForm
+    - 서명이 됐다면 실행시 50% 확률로 로봇화 성공, 실패 문구를 출력
+  - ShrubberyCreationForm
+    - 서명이 됐다면 실행시 file 에 분재 ascii art 를 그림
+- ex01 과 같이 사인이 안 됐거나 등급이 낮으면 예외를 뱉는다.
+- AForm 추상 클래스를 사용하여 어떤 종류의 Form 이든 AForm* 에 넣어 다형성을 이용한 서명, 실행이 가능
+
+### ex03
+
+**[Exception & 다형성 2]**
+
+- AForm* 를 생성하는 Intern 클래스 생성
+- 다형성을 이용해 PresidentialPardonForm, RobotomyRequestForm, ShrubberyCreationForm 3개의 포인터중 요청받은 1개를 AForm* 에 넣어 반환
+
 ## CPP06
 
+### ex00
+
+**[static_cast]**
+
+- 인자를 1개 받아 static cast 를 통하여 해당 인자를 char, int, float, double 로 변환해 출력해주는 프로그램
+  
+  <img width="629" alt="image" src="https://github.com/seonjo1/CPP/assets/127729846/a2903f64-ec1c-4eff-986a-5548400e8c9d">
+
+- 오버플로우가 나거나 표현이 불가능한 경우 오류 출력
+- 컴파일 타임에 캐스팅이 되는 static_cast 를 이용
+
+### ex01
+
+**[reinterpret_cast]**
+
+- Serializer 클래스 구현
+  - Data 구조체의 포인터를 uintptr_t 로 변환해주는 serialize() 함수
+  - uintptr_t 를 Data 구조체의 포인터로 변환해주는 deserialize() 함수
+  - 포인터의 형변환이 가능한 reinterpret_cast 이용
+
+### ex02
+
+**[dynamic_cast]**
+
+- 부모 클래스 Base 생성
+  - 자식 클래스 A, B, C 생성
+
+- func 클래스 구현
+  - Base* 에 A*, B*, C* 중 1개를 랜덤으로 넣어 반환하는 generate() 구현
+  - Base* 를 인자로 받아 내부에 A*, B*, C* 중 뭐가 들어있는지 알려주는 identify(Base* p) 구현
+  - Base& 를 인자로 받아 내부에 A&, B&, C& 중 뭐가 들어있는지 알려주는 identify(Base& p) 구현
+
+- dynamic_cast 로 identify() 함수를 구현
+- dynamic_cast 는 런타임에 타입 변환을 해주는 캐스팅으로, 캐스팅이 실패했을때 패턴이 포인터일때랑 참조일때가 다름 
+  
+- identify(Base* p)
+  - Base* 를 dynamic_cast 를 이용해 A*, B*, C* 로 변환해보며 캐스팅이 성공한 타입이 내부에 있는 것을 확인
+  - dynamic_cast 로 포인터 캐스팅을 할때 실패하면 NULL 을 반환하므로 이를 이용해 구현
+- identify(Base& p)
+  - Base& 를 dynamic_cast 를 이용해 A&, B&, C& 로 변환해보며 캐스팅이 성공한 타입이 내부에 있는 것을 확인
+  - dynamic_cast 로 참조 캐스팅을 할때 실패하면 예외를 발생시키므로 이를 이용해 구현
+
+
 ## CPP07
+
+### ex00
+
+
+### ex01
+
+### ex02
 
 ## CPP08
 
