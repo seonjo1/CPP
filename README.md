@@ -568,7 +568,36 @@
 
 **[vector, list 컨테이너]**
 
+- PmergeMe 클래스 구현
+  - 포드 존슨 알고리즘으로 수들을 정렬해주는 클래스
+- 포드 존슨 알고리즘
+  - 최소 비교 횟수 정렬 알고리즘으로 merge insert 정렬로도 유명
+- 포드 존슨 알고리즘의 특징
+  - 수들을 재귀적으로 merge 하며 진행
+    - n 개의 수를 2 개씩 비교 
+    - 큰 수를 main chain, 작은 수를 sub chain 으로 merge
+    - main chain 들을 가지고 다시 merge 진행
+  - merge 가 끝나 main chain 이 1개가 남은 경우 재귀를 풀기 시작
+  - merge 를 풀면서 insert 를 진행
+    - main chain 들은 재귀를 풀면서 정렬된 상태로 존재
+    - sub chain 들을 main chain 에 insert 하며 정렬
+    - insert 시 이진 탐색과 Jacobsthal 수를 이용해 최소 비교횟수로 정렬
+      - sub chain 의 요소들을 Jacobsthal 수의 순서대로 insert
+        - Jacobsthal 수
+        - 0, 1, 3, 5, 11 ... 의 수열
+        - 위 수열에 따라 **1** -> **3** -> 2 -> **5** -> 4 -> **11** -> 10 -> 9 .. 순서로 insert 진행
+      - insert 시 sub chain 과 대응하는 main chain 이전의 범위에서 이진 탐색 진행
+    - Jacobsthal 수의 순서로 insert하면, 이진 탐색의 비교횟수가 최적화됨 
 
+- vector vs list
+  - 두 컨테이너로 정렬을 진행한 결과
+
+    <img width="887" alt="image" src="https://github.com/seonjo1/CPP/assets/127729846/f82f3cba-e608-49bf-af61-5d655e4646d8">
+
+    <img width="647" alt="image" src="https://github.com/seonjo1/CPP/assets/127729846/8fe394a4-2a62-41da-89aa-ce704683a6b6">
+
+  - 내가 구현한 포드 존슨 알고리즘은 중간 삽입이 많다보니 vector 특성상 재할당이 많이 일어나 속도가 많이 느려진 것을 볼 수 있다
+  - list 는 재할당을 하지 않고 가리키는 포인터만 변환해 주면 되다 보니 좀 더 빠른 결과를 보여준다
 
 
 
