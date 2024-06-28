@@ -1,5 +1,5 @@
 # CPP
-c++ 을 10 가지 주제로 나눠 공부
+**c++ 과제**
 - c++98 standard 를 적용
 - Orthodox Canonical Form 형식으로 디자인
 
