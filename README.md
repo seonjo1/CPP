@@ -228,8 +228,28 @@
 
 ### ex02
 
+**[추상 클래스]**
+
+- Animal 클래스의 makeSound() 를 순수 가상함수로 만들어 추상 클래스로 변경
+- Animal 은 더이상 객체를 생성할 수 없음 (객체 생성시 컴파일 오류)
+
 ### ex03
 
+**[인터페이스]**
+
+- c++ 에서 공식적으로 인터페이스를 지원하지는 않음
+- 멤버 변수 없이 순수 가상함수만으로 구현된 클래스를 인터페이스로 보고 있음
+- 구현을 상속시키는 용도
+
+- 추상 클래스와 인터페이스를 이용해 다음 클래스들을 구현
+  - ICharacter (캐릭터 인터페이스)
+    - Chracter (ICharacter 를 상속 받는 캐릭터 클래스)
+  - AMateria (스킬 추상 클래스)
+    - Cure (AMateria 를 상속 받는 치유 스킬)
+    - Ice (AMateria 를 상속 받는 얼음 스킬)
+  - IMateriaSource (스킬생성기 인터페이스)
+    - MateriaSource (IMateriaSource 를 상속 받는 스킬생성기)
+  
 ## CPP05
 
 ## CPP06
